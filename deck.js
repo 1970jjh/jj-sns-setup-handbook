@@ -15,10 +15,13 @@ window.DECK = [
     {h:"② Claude Desktop + Claude Code", t:"스킬을 실행하는 본체. Windows 앱 기준"},
     {h:"③ 파이썬 패키지 7종", t:"브라우저 자동화 · 얼굴 모자이크 · TTS · 유튜브 업로드"},
     {h:"④ API 키와 토큰 4종", t:"Gemini · YouTube · 인스타그램 · 스레드"},
-    {h:"⑤ 브라우저 로그인 세션 3종", t:"네이버 · 티스토리(카카오) · Google Flow"} ],
-  aside:{ h:"이건 안 씁니다", items:[
-    "MCP 서버 — 0개","커넥터 — 0개",
-    "Claude in Chrome — 네이버 도메인 차단으로 사용 불가","별도 유료 이미지 API — Flow 구독으로 0원"] } },
+    {h:"⑤ 브라우저 로그인 세션 3종", t:"네이버 · 티스토리(카카오) · Google Flow"},
+    {h:"⑥ 커넥터 (선택이지만 권장)", t:"GitHub · Vercel — 켜두면 배포를 Claude 가 대신합니다"} ],
+  aside:{ h:"참고 — 이건 이렇습니다", items:[
+    "MCP 서버 — 필요 없습니다 (0개)",
+    "커넥터 — GitHub · Vercel · PlayMCP 는 켜두면 편합니다",
+    "Claude in Chrome — 네이버 차단으로 사용 불가",
+    "유료 이미지 API 불필요 — Flow 구독으로 0원"] } },
 
 { type:"chapter", topic:"claude", kicker:"STEP 0", num:"0", icon:"🪪",
   title:"계정 먼저 — 과정 전 사전과제",
@@ -99,6 +102,37 @@ window.DECK = [
     {h:"Claude Code 설치", t:"npm install -g @anthropic-ai/claude-code"} ],
   note:"설치 확인: PowerShell에서 <b>claude --version</b> → 이후 <b>claude</b> 로 실행하면 브라우저 인증이 열립니다" },
 
+{ type:"flow", sec:"02. Claude", title:"Claude Desktop 앱 설치 직후 — 이 순서로 진행합니다",
+  lead:"앱만 깔면 스킬이 바로 도는 게 아닙니다. 아래 순서를 지켜야 합니다.",
+  steps:[
+    {icon:"1️⃣", h:"Claude Desktop 설치", t:"claude.ai/download<br>Windows 버전"},
+    {icon:"2️⃣", h:"MAX 계정 로그인", t:"앱을 열고 구독 계정으로"},
+    {icon:"3️⃣", h:"Node.js 설치", t:"CLI 설치에 npm 이<br>먼저 필요합니다"},
+    {icon:"4️⃣", h:"Claude Code(CLI) 설치", t:"npm install -g<br>@anthropic-ai/claude-code"},
+    {icon:"5️⃣", h:"Python + ffmpeg", t:"스크립트·영상 렌더용"},
+    {icon:"6️⃣", h:"커넥터 활성화", t:"GitHub · Vercel · PlayMCP"} ],
+  note:"🔴 <b>순서가 중요합니다.</b> Node.js 없이 Claude Code 를 설치하려 하면 npm 명령 자체가 없어 실패합니다." },
+
+{ type:"split", title:"Claude Code (CLI) 설치", side:"left", img:"npm_cc",
+  url:"npmjs.com/package/@anthropic-ai/claude-code",
+  lead:"Claude Desktop 앱과 <b>별개로</b> CLI 를 설치해야 스킬이 돌아갑니다.",
+  bullets:[
+    {h:"Node.js 를 먼저 설치", t:"npm 이 있어야 설치가 됩니다 (STEP 1 참고)"},
+    {h:"PowerShell 에서 설치", t:"npm install -g @anthropic-ai/claude-code"},
+    {h:"설치 확인", t:"claude --version 이 출력되면 성공"},
+    {h:"첫 실행 시 로그인", t:"claude 입력 → 브라우저 인증 → MAX 계정 선택"} ],
+  note:"앱은 대화용, CLI 는 스킬 실행용입니다. <b>둘 다 필요합니다.</b>" },
+
+{ type:"split", title:"커넥터 활성화 — GitHub · Vercel 을 Claude 가 직접 처리", side:"right", img:"connectors",
+  url:"Claude Desktop → 설정 → 커넥터",
+  lead:"커넥터를 켜두면 저장소 생성·배포를 <b>Claude 가 알아서</b> 합니다. 수동 git 명령이 크게 줄어듭니다.",
+  bullets:[
+    {h:"설정 → 커넥터 열기", t:"좌측 메뉴 하단의 '커넥터'"},
+    {h:"GitHub 연동 활성화", t:"저장소 생성·푸시를 Claude 가 수행"},
+    {h:"Vercel 활성화", t:"배포와 URL 확인까지 자동"},
+    {h:"PlayMCP 활성화", t:"브라우저 자동화 보조"} ],
+  note:"✅ 커넥터를 켜면 STEP 6 의 GitHub·Vercel 수동 작업이 대부분 사라집니다. <b>단, 최초 계정 연결 승인은 본인이 클릭</b>해야 합니다." },
+
 { type:"chapter", topic:"env", kicker:"STEP 3", num:"3", icon:"📦",
   title:"파이썬 패키지 · 영상 엔진",
   sub:"명령 두 줄이면 끝납니다",
@@ -158,6 +192,49 @@ window.DECK = [
     {h:"토큰 파일로 저장", t:".auth/instagram.json · .auth/threads.json"} ],
   note:"저장 형식: <b>access_token</b> · <b>user_id</b> · <b>expires_at</b> 세 개 필드" },
 
+{ type:"table", title:"② 유튜브 OAuth — 단계별 상세", head:["단계","화면에서 할 일","자동 여부"],
+  rows:[
+    ["1","<b>console.cloud.google.com</b> → 새 프로젝트 만들기","🟡 Claude 가 안내, 클릭은 본인"],
+    ["2","API 라이브러리 → <b>YouTube Data API v3</b> 검색 → 사용 설정","🟡 동일"],
+    ["3","OAuth 동의 화면 → 외부 → 앱 이름·이메일 입력","🔴 <b>본인 입력 필수</b>"],
+    ["4","테스트 사용자에 <b>본인 구글 계정 추가</b>","🔴 누락 시 인증 거부됨"],
+    ["5","사용자 인증 정보 → OAuth 클라이언트 ID → <b>데스크톱 앱</b>","🟡 안내"],
+    ["6","JSON 다운로드 → <b>secrets/</b> 폴더에 저장","🟢 Claude 가 경로 안내"],
+    ["7","최초 1회 브라우저 인증 → 계정 선택 → 허용","🔴 <b>본인 클릭</b>"] ],
+  note:"인증이 끝나면 <b>youtube_token.pickle</b> 이 만들어지고, 이후로는 자동 갱신됩니다. 4단계 테스트 사용자 추가를 빠뜨리는 사례가 가장 많습니다." },
+
+{ type:"split", title:"③ 인스타그램 토큰 — 비즈니스 전환이 먼저", side:"left", img:"ig_business",
+  url:"help.instagram.com — 비즈니스 계정 전환",
+  lead:"🔴 <b>개인 계정이면 여기서 막힙니다.</b> 전환 먼저 하고 토큰을 받습니다.",
+  bullets:[
+    {h:"1. 인스타 앱에서 전환", t:"설정 → 계정 유형 → 비즈니스/크리에이터"},
+    {h:"2. Meta 개발자에서 앱 생성", t:"developers.facebook.com/apps"},
+    {h:"3. 사용자 토큰 생성기", t:"장기 토큰(60일)으로 발급"},
+    {h:"4. .auth/instagram.json 저장", t:"access_token · user_id · expires_at"} ],
+  note:"OAuth 구현도, 페이스북 페이지도 필요 없습니다. <b>토큰 생성기 한 번</b>이면 됩니다." },
+
+{ type:"split", title:"④ 스레드 토큰", side:"right", img:"threads_doc",
+  url:"developers.facebook.com/docs/threads",
+  lead:"인스타와 같은 방식입니다. 스레드 전용 앱을 하나 더 만듭니다.",
+  bullets:[
+    {h:"스레드 계정이 인스타와 연결돼 있어야 함", t:"미연결 시 앱 생성 단계에서 막힘"},
+    {h:"Meta 개발자 → 스레드 앱 생성", t:"Threads API 제품 추가"},
+    {h:"사용자 토큰 생성기에서 발급", t:"threads_basic · threads_content_publish 권한"},
+    {h:".auth/threads.json 저장", t:"인스타와 동일한 세 필드"} ] },
+
+{ type:"concept", eyebrow:"AUTOMATION BOUNDARY", title:"어디까지 Claude 가 하고, 어디부터 본인이 하나",
+  lead:"토큰 발급은 <b>보안상 100% 자동이 불가능</b>합니다. 경계를 분명히 알아두세요.",
+  bullets:[
+    {h:"🟢 Claude 가 하는 것", t:"페이지 열기, 어디를 눌러야 하는지 안내, 발급받은 값을 올바른 파일·형식으로 저장, 연결 테스트"},
+    {h:"🔴 본인이 해야 하는 것", t:"로그인, 비밀번호 입력, 2단계 인증, 약관·권한 동의 클릭, 계정 선택"},
+    {h:"왜 그런가", t:"AI 가 비밀번호를 대신 입력하지 않는 것은 안전장치입니다. 계정 탈취 위험을 원천 차단합니다"} ],
+  aside:{ h:"진행 방식", items:[
+    "Claude 가 브라우저 창을 띄웁니다",
+    "\"여기서 로그인해 주세요\" 안내",
+    "본인이 로그인·동의 클릭",
+    "그 다음은 다시 전부 자동",
+    "→ 영상에서 본 티스토리 로그인과 같은 패턴"] } },
+
 { type:"chapter", topic:"wrap", kicker:"STEP 5", num:"5", icon:"🔐",
   title:"브라우저 로그인 세션",
   sub:"API 가 없는 채널은 로그인 세션을 저장해 씁니다",
@@ -183,7 +260,7 @@ window.DECK = [
     {h:"GitHub 저장소 생성 후 clone", t:"홈페이지 소스를 담습니다"},
     {h:"Vercel 에 GitHub 로그인으로 연결", t:"푸시하면 자동 배포"},
     {h:"카드 10장이 여기 올라갑니다", t:"그래야 인스타 캐러셀 발행이 성공합니다"} ],
-  note:"이미지가 배포되기 전에 발행하면 원인 없이 실패합니다. 배포 완료를 확인한 뒤 발행합니다." },
+  note:"✅ <b>커넥터를 켜두셨다면</b> 저장소 생성·연결·배포를 Claude 가 대신합니다(STEP 2 참고). 이미지가 배포되기 전에 발행하면 원인 없이 실패하니 배포 완료를 확인한 뒤 발행합니다." },
 
 { type:"gallery", title:"배포 · 이미지 생성 링크",
   section:"deploy", layout:"link", max:3,

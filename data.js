@@ -17,6 +17,13 @@ window.IMG = {
   flow:     { file: "assets/img/flow.jpg" },
   github:   { file: "assets/img/github.jpg" },
   vercel:   { file: "assets/img/vercel.jpg" },
+  connectors:  { file: "assets/img/connectors.png" },
+  meta_apps:   { file: "assets/img/meta_apps.jpg" },
+  ig_business: { file: "assets/img/ig_business.jpg" },
+  yt_api:      { file: "assets/img/yt_api.jpg" },
+  gcp_cred:    { file: "assets/img/gcp_cred.jpg" },
+  threads_doc: { file: "assets/img/threads_doc.jpg" },
+  npm_cc:      { file: "assets/img/npm_cc.jpg" },
 };
 
 window.SECTIONS = {
