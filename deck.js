@@ -1,0 +1,271 @@
+window.DECK = [
+{ type:"cover", kicker:"기업교육 강사 · 컨설턴트 · HRDer 를 위한",
+  title:'클로드코드 <span class="hl">SNS 6종 자동화</span><br>사전셋팅 A to Z',
+  subtitle:"아무것도 깔려 있지 않은 윈도우 PC 기준 &middot; 순서대로 따라만 하시면 됩니다",
+  meta:["Windows 10/11 + Claude Desktop 앱","소요 2~3시간","JJ Creative 교육연구소"] },
+
+{ type:"statement", topic:"claude",
+  big:'사진 폴더 하나가<br><span class="hl">SNS 6종</span>이 됩니다',
+  sub:"네이버 블로그 · 티스토리 · 홈페이지 · 스레드 · 인스타그램 · 유튜브 쇼츠" },
+
+{ type:"concept", sec:"00. 전체 그림", eyebrow:"OVERVIEW", title:"무엇을 왜 설치하나",
+  lead:"이 자동화는 <b>MCP 없이</b> 돌아갑니다. 아래 다섯 덩어리만 갖추면 됩니다.",
+  bullets:[
+    {h:"① 런타임 4종", t:"Python · Node.js · Git · ffmpeg — 스크립트와 영상 렌더의 토대"},
+    {h:"② Claude Desktop + Claude Code", t:"스킬을 실행하는 본체. Windows 앱 기준"},
+    {h:"③ 파이썬 패키지 7종", t:"브라우저 자동화 · 얼굴 모자이크 · TTS · 유튜브 업로드"},
+    {h:"④ API 키와 토큰 4종", t:"Gemini · YouTube · 인스타그램 · 스레드"},
+    {h:"⑤ 브라우저 로그인 세션 3종", t:"네이버 · 티스토리(카카오) · Google Flow"} ],
+  aside:{ h:"이건 안 씁니다", items:[
+    "MCP 서버 — 0개","커넥터 — 0개",
+    "Claude in Chrome — 네이버 도메인 차단으로 사용 불가","별도 유료 이미지 API — Flow 구독으로 0원"] } },
+
+{ type:"chapter", topic:"claude", kicker:"STEP 0", num:"0", icon:"🪪",
+  title:"계정 먼저 — 과정 전 사전과제",
+  sub:"승인·심사에 시간이 걸립니다. 여기서 막히면 당일 실습을 못 따라옵니다.",
+  points:["Claude MAX 100 구독","SNS 6개 채널 계정","GitHub · Vercel"] },
+
+{ type:"gallery", sec:"00. 계정 준비", title:"계정 · 서비스 가입 (클릭하면 열립니다)",
+  section:"accounts", layout:"link", max:6,
+  lead:"아래 여섯 개는 <b>과정 시작 전까지</b> 반드시 끝내주세요." },
+
+{ type:"table", title:"계정 준비 체크리스트", head:["#","항목","확인 포인트"],
+  rows:[
+    ["0-1","<b>Claude 유료 구독 (MAX 100)</b>","실습량이 많아 Pro는 한도 초과 — 필수"],
+    ["0-2","구글 계정","Gemini 키 · 유튜브 · Flow 가 전부 여기 묶임"],
+    ["0-3","네이버 계정 + 블로그 개설","글쓰기 API 종료 → 브라우저 자동화"],
+    ["0-4","티스토리 블로그 (카카오)","Open API 2024년 종료"],
+    ["0-5","<b>인스타 — 비즈니스/크리에이터 전환</b>","개인 계정은 API 발행 불가"],
+    ["0-6","스레드 계정 (인스타 연결)","토큰 생성기로 발급"],
+    ["0-7","유튜브 채널 · GitHub · Vercel","Vercel은 카드 이미지 호스팅에 필수"] ],
+  note:"⚠️ 인스타를 <b>비즈니스 계정으로 전환</b>하지 않으면 카드뉴스 자동 발행이 아예 되지 않습니다. 가장 흔한 사전준비 누락입니다." },
+
+{ type:"chapter", topic:"env", kicker:"STEP 1", num:"1", icon:"⚙️",
+  title:"기본 런타임 4종 설치",
+  sub:"Python · Node.js · Git · ffmpeg — 모두 Windows 설치본",
+  points:["설치 시 PATH 등록 체크","설치 후 버전 확인 명령으로 검증"] },
+
+{ type:"gallery", sec:"01. 런타임", title:"내려받기 링크 (클릭하면 열립니다)",
+  section:"runtime", layout:"link", max:4,
+  lead:"네 개 모두 <b>기본 옵션 그대로</b> 설치하되, Python만 첫 화면 체크박스를 꼭 눌러주세요." },
+
+{ type:"split", title:"① Python 설치", side:"left", img:"python",
+  url:"python.org/downloads/windows",
+  lead:"3.11 이상이면 됩니다. 이 컴퓨터는 3.13.7로 검증했습니다.",
+  bullets:[
+    {h:"Windows installer (64-bit) 선택", t:"embeddable 이 아니라 installer 를 받습니다"},
+    {h:"🔴 Add python.exe to PATH 체크", t:"첫 화면 아래 체크박스. 놓치면 명령어가 전부 실패합니다"},
+    {h:"Install Now 클릭", t:"나머지는 기본값 그대로"} ],
+  note:"확인: PowerShell에서 <b>python --version</b> → 3.11 이상이 보이면 성공" },
+
+{ type:"split", title:"② Node.js 설치", side:"right", img:"nodejs",
+  url:"nodejs.org/ko/download",
+  lead:"유튜브 쇼츠 렌더 엔진(Remotion)과 Claude Code 설치에 필요합니다.",
+  bullets:[
+    {h:"LTS 버전 선택", t:"Current 말고 LTS. npm이 함께 설치됩니다"},
+    {h:"Windows Installer (.msi)", t:"기본 옵션 그대로 Next"},
+    {h:"npm 도 같이 들어옵니다", t:"별도 설치 불필요"} ],
+  note:"확인: <b>node --version</b> 과 <b>npm --version</b> 이 모두 나오면 성공" },
+
+{ type:"split", title:"③ Git for Windows 설치", side:"left", img:"git",
+  url:"git-scm.com/download/win",
+  lead:"홈페이지 소스를 GitHub에 올리고 Vercel로 자동 배포할 때 씁니다.",
+  bullets:[
+    {h:"64-bit Git for Windows Setup", t:"자동으로 다운로드가 시작됩니다"},
+    {h:"설치 옵션은 전부 기본값", t:"Next 만 계속 누르면 됩니다"},
+    {h:"설치 후 이름·메일 등록", t:'git config --global user.name / user.email'} ],
+  note:"확인: <b>git --version</b>" },
+
+{ type:"split", title:"④ ffmpeg 설치 (PATH 수동 등록)", side:"right", img:"ffmpeg",
+  url:"gyan.dev/ffmpeg/builds",
+  lead:"쇼츠 렌더와 오디오 합성에 필요합니다. 설치 관리자가 없어 압축을 직접 풀어야 합니다.",
+  bullets:[
+    {h:"release full 빌드 다운로드", t:"ffmpeg-release-full.7z 또는 .zip"},
+    {h:"C:\\ffmpeg 로 압축 해제", t:"경로에 한글·공백이 없어야 합니다"},
+    {h:"시스템 환경변수 Path 에 추가", t:"C:\\ffmpeg\\bin 을 등록한 뒤 창을 새로 엽니다"} ],
+  note:"확인: <b>ffmpeg -version</b> · 이 컴퓨터는 8.1.1로 검증" },
+
+{ type:"chapter", topic:"claude", kicker:"STEP 2", num:"2", icon:"🤖",
+  title:"Claude 환경 (Windows)",
+  sub:"Claude Desktop 앱 + Claude Code",
+  points:["앱 설치 후 MAX 계정으로 로그인","Claude Code 는 npm 으로 설치"] },
+
+{ type:"split", sec:"02. Claude", title:"Claude Desktop 앱 설치", side:"left", img:"claude",
+  url:"claude.ai/download",
+  lead:"Windows 버전을 받아 설치하고, <b>MAX 100 구독 계정</b>으로 로그인합니다.",
+  bullets:[
+    {h:"Download for Windows", t:"내려받아 실행하면 자동 설치됩니다"},
+    {h:"MAX 구독 계정으로 로그인", t:"무료·Pro 계정이면 실습 중 한도에 걸립니다"},
+    {h:"Claude Code 설치", t:"npm install -g @anthropic-ai/claude-code"} ],
+  note:"설치 확인: PowerShell에서 <b>claude --version</b> → 이후 <b>claude</b> 로 실행하면 브라우저 인증이 열립니다" },
+
+{ type:"chapter", topic:"env", kicker:"STEP 3", num:"3", icon:"📦",
+  title:"파이썬 패키지 · 영상 엔진",
+  sub:"명령 두 줄이면 끝납니다",
+  points:["pip install 7종","playwright 브라우저 설치","npm install (Remotion)"] },
+
+{ type:"prompts", sec:"03. 패키지", title:"복사해서 그대로 실행하세요",
+  lead:"PowerShell 을 열고 아래 두 블록을 순서대로 붙여넣습니다.",
+  cards:[
+    { tag:"① 파이썬 패키지 + 브라우저",
+      body:'<span class="v">pip install playwright pillow opencv-python numpy requests google-genai google-api-python-client google-auth-oauthlib</span><br><br><span class="v">python -m playwright install chromium</span>' },
+    { tag:"② 영상 엔진 (쇼츠 렌더)",
+      body:'<span class="v">cd &lt;영상작업폴더&gt;</span><br><span class="v">npm install</span><br><br>Remotion 4.x · React · TypeScript 가 함께 설치됩니다' } ] },
+
+{ type:"table", title:"각 패키지가 하는 일", head:["패키지","쓰이는 곳"],
+  rows:[
+    ["<b>playwright</b>","네이버·티스토리 자동 발행, Google Flow 이미지 생성"],
+    ["<b>opencv-python + numpy</b>","얼굴·명찰 자동 모자이크"],
+    ["<b>pillow</b>","인스타 카드 1:1 변환, 표지 합성"],
+    ["<b>google-genai</b>","Gemini TTS — 쇼츠 내레이션 음성"],
+    ["<b>google-api-python-client</b><br><b>google-auth-oauthlib</b>","유튜브 업로드 인증"],
+    ["<b>requests</b>","스레드·인스타 Graph API 호출"] ],
+  note:"🔴 <b>python -m playwright install chromium</b> 을 빠뜨리면 브라우저 자동화가 전부 실패합니다. 가장 흔한 누락입니다." },
+
+{ type:"chapter", topic:"gemini", kicker:"STEP 4", num:"4", icon:"🔑",
+  title:"API 키 · 토큰 발급",
+  sub:"여기가 가장 오래 걸립니다 — 네 가지",
+  points:["Gemini 키","유튜브 OAuth","인스타 토큰","스레드 토큰"] },
+
+{ type:"gallery", sec:"04. 키 발급", title:"발급처 바로가기",
+  section:"keys", layout:"link", max:4,
+  lead:"각 사이트에서 발급받아 지정된 파일에 저장합니다." },
+
+{ type:"split", title:"① Gemini API 키", side:"left", img:"aistudio",
+  url:"aistudio.google.com/apikey",
+  lead:"쇼츠 내레이션 음성(TTS)을 만드는 데 씁니다.",
+  bullets:[
+    {h:"Google AI Studio 접속", t:"구글 계정으로 로그인"},
+    {h:"API 키 만들기 클릭", t:"생성된 키를 복사"},
+    {h:".env 파일에 저장", t:"GEMINI_API_KEY=복사한키"} ],
+  note:"⚠️ 키는 채팅창이나 문서에 붙여넣지 마세요. .env 파일에만 둡니다." },
+
+{ type:"split", title:"② 유튜브 업로드 인증", side:"right", img:"gcloud",
+  url:"console.cloud.google.com",
+  lead:"쇼츠를 자동 업로드하려면 OAuth 인증이 한 번 필요합니다.",
+  bullets:[
+    {h:"프로젝트 만들기", t:"이름은 자유"},
+    {h:"YouTube Data API v3 사용 설정", t:"API 라이브러리에서 검색해 사용 설정"},
+    {h:"OAuth 클라이언트 ID — 데스크톱 앱", t:"JSON 을 받아 secrets 폴더에 둡니다"},
+    {h:"최초 1회 브라우저 인증", t:"이후 youtube_token.pickle 로 자동 갱신"} ] },
+
+{ type:"split", title:"③④ 인스타그램 · 스레드 토큰", side:"left", img:"meta",
+  url:"developers.facebook.com",
+  lead:"두 채널 모두 <b>사용자 토큰 생성기</b>로 받습니다. OAuth 구현도, 페이스북 페이지도 필요 없습니다.",
+  bullets:[
+    {h:"Meta 개발자에서 앱 만들기", t:"인스타그램용 · 스레드용 각각"},
+    {h:"사용자 토큰 생성기에서 발급", t:"장기 토큰(60일)으로 받습니다"},
+    {h:"토큰 파일로 저장", t:".auth/instagram.json · .auth/threads.json"} ],
+  note:"저장 형식: <b>access_token</b> · <b>user_id</b> · <b>expires_at</b> 세 개 필드" },
+
+{ type:"chapter", topic:"wrap", kicker:"STEP 5", num:"5", icon:"🔐",
+  title:"브라우저 로그인 세션",
+  sub:"API 가 없는 채널은 로그인 세션을 저장해 씁니다",
+  points:["네이버 — API 2020년 종료","티스토리 — API 2024년 종료","Flow — 8시간마다 갱신"] },
+
+{ type:"table", sec:"05. 로그인", title:"세 곳의 로그인 세션",
+  head:["대상","저장 위치","재로그인 주기"],
+  rows:[
+    ["<b>네이버</b>","~/.claude/.naver-profile","드묾"],
+    ["<b>티스토리 (카카오)</b>",".auth/chrome-profile","<b>주기적으로 필요</b>"],
+    ["<b>Google Flow</b>","~/.claude/.image-flow-profile","약 8시간"] ],
+  note:"🔴 로그인은 <b>본인이 직접</b> 창에서 합니다. AI 는 아이디·비밀번호를 대신 입력하지 않습니다. 창이 뜨면 로그인만 해주시면 그 다음은 다시 전부 자동입니다." },
+
+{ type:"chapter", topic:"vercel", kicker:"STEP 6", num:"6", icon:"🚀",
+  title:"배포 · 이미지 호스팅",
+  sub:"인스타 발행에 반드시 필요합니다",
+  points:["GitHub 저장소","Vercel 자동 배포","Flow 이미지 생성"] },
+
+{ type:"split", sec:"06. 배포", title:"Vercel 이 왜 필요한가", side:"right", img:"vercel",
+  url:"vercel.com",
+  lead:"인스타그램은 <b>https 공개 URL 이미지만</b> 받습니다. 내 PC 안의 파일로는 발행이 되지 않습니다.",
+  bullets:[
+    {h:"GitHub 저장소 생성 후 clone", t:"홈페이지 소스를 담습니다"},
+    {h:"Vercel 에 GitHub 로그인으로 연결", t:"푸시하면 자동 배포"},
+    {h:"카드 10장이 여기 올라갑니다", t:"그래야 인스타 캐러셀 발행이 성공합니다"} ],
+  note:"이미지가 배포되기 전에 발행하면 원인 없이 실패합니다. 배포 완료를 확인한 뒤 발행합니다." },
+
+{ type:"gallery", title:"배포 · 이미지 생성 링크",
+  section:"deploy", layout:"link", max:3,
+  lead:"Google Flow 는 <b>구독제</b>라 이미지 생성 비용이 들지 않습니다." },
+
+{ type:"chapter", topic:"claude", kicker:"STEP 7", num:"7", icon:"🧩",
+  title:"스킬 설치와 첫 실행",
+  sub:"두 스킬은 반드시 세트로",
+  points:["스킬 2개 + image-flow","점검 명령 3줄","실전 호출"] },
+
+{ type:"concept", sec:"07. 스킬", eyebrow:"SKILLS", title:"스킬 폴더 구조",
+  lead:"<b>~/.claude/skills/</b> 아래에 세 폴더를 넣습니다.",
+  bullets:[
+    {h:"naver-blog-post", t:"스킬 ① — 사진 선별 · 모자이크 · 원고 · 네이버 발행"},
+    {h:"tistory-thread-insta-hp-youtube", t:"스킬 ② — 티스토리 · 홈페이지 · 스레드 · 인스타 · 쇼츠"},
+    {h:"image-flow", t:"두 스킬이 공통으로 호출하는 이미지 생성 엔진"} ],
+  aside:{ h:"반드시 세트로", items:[
+    "카드뉴스 스타일 20종 레시피가 ②에 들어 있고",
+    "①이 그것을 참조합니다",
+    "하나만 설치하면 스타일이 적용되지 않습니다",
+    "스타일 대시보드는 웹 URL 이라 설치 불필요"] } },
+
+{ type:"prompts", title:"설치 점검 · 첫 실행",
+  lead:"아래를 순서대로 확인한 뒤, 사진 폴더를 만들고 스킬을 부릅니다.",
+  cards:[
+    { tag:"① 점검 3줄",
+      body:'<span class="v">python -m playwright install chromium</span><br><span class="v">ffmpeg -version</span><br><span class="v">claude --version</span>' },
+    { tag:"② 실전 호출 — 이게 전부입니다",
+      body:'작업 폴더에 <b>그날 찍은 사진 + 교안 파일</b>을 넣고<br><br><span class="v">/naver-blog-post</span><br><span class="v">/tistory-thread-insta-hp-youtube</span><br><br>나머지는 전부 자동입니다' } ] },
+
+{ type:"chapter", topic:"research", kicker:"TROUBLE", num:"8", icon:"🚨",
+  title:"자주 나는 오류와 대처",
+  sub:"실제로 겪은 것들만 모았습니다",
+  points:["설치 단계","실행 단계","발행 단계"] },
+
+{ type:"table", sec:"08. 오류 대처", title:"설치 · 실행 단계",
+  head:["증상","원인","해결"],
+  rows:[
+    ["<b>'python' 은(는) 인식할 수 없는 명령</b>","설치 시 PATH 체크 누락","Python 재설치하며 <b>Add to PATH</b> 체크"],
+    ["<b>브라우저가 안 열림 / Executable doesn't exist</b>","크로미움 미설치","<b>python -m playwright install chromium</b>"],
+    ["<b>ffmpeg 를 찾을 수 없음</b>","Path 미등록","환경변수 Path 에 <b>C:\\ffmpeg\\bin</b> 추가 후 창 새로 열기"],
+    ["<b>npm install 실패</b>","Node 미설치 또는 구버전","Node.js <b>LTS</b> 재설치"],
+    ["<b>한도 초과 안내</b>","Pro 요금제 사용","<b>MAX 100</b> 으로 상향"] ] },
+
+{ type:"table", title:"발행 단계", head:["증상","원인","해결"],
+  rows:[
+    ["<b>카카오 로그인 세션이 만료되었습니다</b>","티스토리 세션 만료 (정상 동작)","창이 뜨면 <b>직접 로그인</b> → 자동 재시도"],
+    ["<b>Flow 에서 이미지가 0장</b>","세션 만료 또는 레이트 리밋","재로그인 · 간격 두고 재시도 (하루 40장 초과 시 발생)"],
+    ["<b>인스타 발행이 원인 없이 실패</b>","이미지가 아직 배포 전","Vercel 배포 완료 확인 후 재발행"],
+    ["<b>인스타 API 오류 (계정)</b>","개인 계정","<b>비즈니스/크리에이터</b> 로 전환"],
+    ["<b>쇼츠가 60초를 넘습니다</b>","내레이션이 김 (검증기가 렌더 전 차단)","문장을 줄이면 자동 재계산"],
+    ["<b>티스토리 발행이 조용히 실패</b>","일일 공개 발행 15건 초과","다음 날 자동 이어서 발행됨"] ],
+  note:"대부분은 <b>스킬이 렌더·발행 전에 먼저 잡아내</b> 시간 낭비 없이 멈춥니다." },
+
+{ type:"concept", sec:"09. 운영 원칙", eyebrow:"IMPORTANT", title:"솔직하게 알려드릴 것",
+  lead:"과정에서 반복해 강조하는 세 가지입니다.",
+  bullets:[
+    {h:"완전 무인은 아닙니다", t:"티스토리 카카오 세션과 Flow 세션은 주기적으로 재로그인이 필요합니다"},
+    {h:"하루 1건이 원칙입니다", t:"몰아서 올리면 검색엔진이 스팸으로 보고 계정이 막힙니다"},
+    {h:"초기 설정에 하루를 씁니다", t:"한 번 잡아두면 그 다음부터는 사진 폴더 지정과 스타일 선택뿐입니다"} ],
+  aside:{ h:"MCP 는 쓰지 않습니다", items:[
+    "MCP 서버 0개 · 커넥터 0개로 동작",
+    "Playwright 는 파이썬 라이브러리",
+    "Claude in Chrome 은 네이버 차단으로 불가",
+    "참여자에게 MCP 설치를 요구하지 마세요"] } },
+
+{ type:"table", title:"최종 체크리스트", head:["시점","할 일","확인"],
+  rows:[
+    ["<b>과정 전</b>","계정 7종 · Claude MAX 구독","로그인 되는지"],
+    ["<b>과정 전</b>","런타임 4종 설치","버전 명령 4개 모두 출력"],
+    ["<b>1일차 오전</b>","파이썬 패키지 + playwright chromium","오류 없이 완료"],
+    ["<b>1일차 오전</b>","API 키·토큰 4종","파일에 저장 완료"],
+    ["<b>1일차 오전</b>","브라우저 로그인 3종","창에서 직접 로그인"],
+    ["<b>1일차 오후</b>","GitHub · Vercel 연결","배포 URL 열림"],
+    ["<b>1일차 오후</b>","스킬 3폴더 설치 → 첫 실행","6채널 발행 성공"] ],
+  note:"이 표를 인쇄해 옆에 두고 하나씩 지워가시면 빠짐이 없습니다." },
+
+{ type:"closing", title:"준비가 끝나면, 이제 강의에만 집중하세요",
+  sub:"오늘 강의는, 오늘 안에 끝납니다",
+  items:[
+    "카드뉴스 스타일 20종 → <a href='https://jj-aiedu.vercel.app/style/card-styles.html'>jj-aiedu.vercel.app/style/card-styles.html</a>",
+    "과정 안내 → <a href='https://jj-aiedu.vercel.app/sns-automation'>jj-aiedu.vercel.app/sns-automation</a>",
+    "교육 문의 → jjh@jjcreative.co.kr · 010-8448-2354",
+    "JJ Creative 교육연구소"] },
+];
