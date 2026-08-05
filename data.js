@@ -2,7 +2,7 @@ window.CFG = {
   title: "SNS 6종 자동화하기",
   brand: "JJ Creative 교육연구소",
   footer: "JJ Creative 교육연구소 · SNS 6종 자동화하기 · 사용설명서",
-  tocFirst: true,
+  tocFirst: "시작하기",
 };
 
 window.IMG = {
