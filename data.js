@@ -1,7 +1,7 @@
 window.CFG = {
-  title: "클로드코드 SNS 6종 자동화 — 사전셋팅 A to Z",
+  title: "SNS 6종 자동화하기",
   brand: "JJ Creative 교육연구소",
-  footer: "JJ Creative 교육연구소 · SNS 6종 자동화 과정 · 사전셋팅 가이드",
+  footer: "JJ Creative 교육연구소 · SNS 6종 자동화하기 · 사용설명서",
   tocFirst: true,
 };
 
@@ -24,6 +24,9 @@ window.IMG = {
   gcp_cred:    { file: "assets/img/gcp_cred.jpg" },
   threads_doc: { file: "assets/img/threads_doc.jpg" },
   npm_cc:      { file: "assets/img/npm_cc.jpg" },
+  results:     { file: "assets/img/results.png" },
+  concept:     { file: "assets/img/concept.png" },
+  mask:        { file: "assets/img/mask.png" },
 };
 
 window.SECTIONS = {
@@ -36,7 +39,7 @@ window.SECTIONS = {
       { name: "티스토리 (카카오 계정)", url: "https://www.tistory.com", type: "link" },
       { name: "인스타그램 — 비즈니스 계정 전환", url: "https://help.instagram.com/502981923235522", type: "docs" },
       { name: "유튜브 채널 만들기", url: "https://www.youtube.com/create_channel", type: "link" },
-      { name: "GitHub 가입", url: "https://github.com/signup", type: "github" },
+      { name: "GitHub 가입 — 우측 상단 Sign up", url: "https://github.com", type: "github" },
     ],
   },
   runtime: {

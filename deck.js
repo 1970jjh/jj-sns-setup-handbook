@@ -1,14 +1,24 @@
 window.DECK = [
 { type:"cover", kicker:"기업교육 강사 · 컨설턴트 · HRDer 를 위한",
-  title:'클로드코드 <span class="hl">SNS 6종 자동화</span><br>사전셋팅 A to Z',
-  subtitle:"아무것도 깔려 있지 않은 윈도우 PC 기준 &middot; 순서대로 따라만 하시면 됩니다",
+  title:'<span class="hl">SNS 6종 자동화</span>하기',
+  subtitle:"아무것도 깔려 있지 않은 윈도우 PC 기준 &middot; A to Z 사용설명서<br>순서대로 따라만 하시면 혼자서도 끝낼 수 있습니다",
   meta:["Windows 10/11 + Claude Desktop 앱","소요 2~3시간","JJ Creative 교육연구소"] },
 
 { type:"statement", topic:"claude",
   big:'사진 폴더 하나가<br><span class="hl">SNS 6종</span>이 됩니다',
   sub:"네이버 블로그 · 티스토리 · 홈페이지 · 스레드 · 인스타그램 · 유튜브 쇼츠" },
 
-{ type:"concept", sec:"00. 전체 그림", eyebrow:"OVERVIEW", title:"무엇을 왜 설치하나",
+{ type:"split", sec:"00. 전체 그림", title:"완성하면 이렇게 됩니다", side:"right", img:"results",
+  url:"실제 발행 결과 — 2026.08.05",
+  lead:"강의 사진 폴더 하나로 여섯 채널이 자동으로 채워집니다. 아래는 실제 발행 화면입니다.",
+  bullets:[
+    {h:"네이버 블로그", t:"현장 사진 + 후기 원고, 얼굴·명찰 자동 모자이크"},
+    {h:"티스토리 · 홈페이지", t:"검색용 문체로 다시 쓰고 교육 사례에 자동 반영"},
+    {h:"스레드 · 인스타그램", t:"핵심 인사이트 / 카드뉴스 10장 캐러셀"},
+    {h:"유튜브 쇼츠", t:"내레이션·자막·편집·업로드까지 전부 자동"} ],
+  note:"사람이 쓰는 시간은 <b>사진 폴더 지정과 스타일 선택, 몇 분</b>이 전부입니다." },
+
+{ type:"concept", eyebrow:"OVERVIEW", title:"무엇을 왜 설치하나",
   lead:"이 자동화는 <b>MCP 없이</b> 돌아갑니다. 아래 다섯 덩어리만 갖추면 됩니다.",
   bullets:[
     {h:"① 런타임 4종", t:"Python · Node.js · Git · ffmpeg — 스크립트와 영상 렌더의 토대"},
@@ -203,6 +213,11 @@ window.DECK = [
     ["7","최초 1회 브라우저 인증 → 계정 선택 → 허용","🔴 <b>본인 클릭</b>"] ],
   note:"인증이 끝나면 <b>youtube_token.pickle</b> 이 만들어지고, 이후로는 자동 갱신됩니다. 4단계 테스트 사용자 추가를 빠뜨리는 사례가 가장 많습니다." },
 
+{ type:"duo", title:"유튜브 OAuth — 실제 화면", lead:"왼쪽에서 API 를 켜고, 오른쪽에서 인증 정보를 만듭니다.",
+  imgs:[
+    {id:"yt_api", url:"console.cloud.google.com — YouTube Data API v3", cap:"① API 라이브러리에서 '사용 설정'"},
+    {id:"gcp_cred", url:"console.cloud.google.com/apis/credentials", cap:"② 사용자 인증 정보 → OAuth 클라이언트 ID → 데스크톱 앱"} ] },
+
 { type:"split", title:"③ 인스타그램 토큰 — 비즈니스 전환이 먼저", side:"left", img:"ig_business",
   url:"help.instagram.com — 비즈니스 계정 전환",
   lead:"🔴 <b>개인 계정이면 여기서 막힙니다.</b> 전환 먼저 하고 토큰을 받습니다.",
@@ -221,6 +236,16 @@ window.DECK = [
     {h:"Meta 개발자 → 스레드 앱 생성", t:"Threads API 제품 추가"},
     {h:"사용자 토큰 생성기에서 발급", t:"threads_basic · threads_content_publish 권한"},
     {h:".auth/threads.json 저장", t:"인스타와 동일한 세 필드"} ] },
+
+{ type:"split", title:"Meta 개발자 — 앱 만들기 화면", side:"right", img:"meta_apps",
+  url:"developers.facebook.com/apps",
+  lead:"인스타그램용·스레드용 앱을 각각 하나씩 만듭니다.",
+  bullets:[
+    {h:"앱 만들기 클릭", t:"용도는 '기타' → 유형은 '비즈니스'"},
+    {h:"제품 추가", t:"인스타그램 / Threads API 선택"},
+    {h:"사용자 토큰 생성기 열기", t:"권한 체크 후 토큰 생성"},
+    {h:"장기 토큰으로 교환", t:"60일 유효, 만료 전 재발급"} ],
+  note:"토큰은 비밀번호와 같습니다. 채팅창·문서에 붙여넣지 말고 <b>.auth 폴더 파일</b>에만 저장하세요." },
 
 { type:"concept", eyebrow:"AUTOMATION BOUNDARY", title:"어디까지 Claude 가 하고, 어디부터 본인이 하나",
   lead:"토큰 발급은 <b>보안상 100% 자동이 불가능</b>합니다. 경계를 분명히 알아두세요.",
@@ -271,7 +296,29 @@ window.DECK = [
   sub:"두 스킬은 반드시 세트로",
   points:["스킬 2개 + image-flow","점검 명령 3줄","실전 호출"] },
 
-{ type:"concept", sec:"07. 스킬", eyebrow:"SKILLS", title:"스킬 폴더 구조",
+{ type:"concept", sec:"07. 스킬", eyebrow:"IMPORTANT", title:"필요한 것은 두 덩어리입니다",
+  lead:"스킬만 있으면 안 됩니다. <b>엔진(스크립트 본체)</b>이 함께 있어야 실행됩니다.",
+  bullets:[
+    {h:"① 엔진 폴더", t:"실제 동작하는 파이썬 스크립트 모음 — 수집·모자이크·발행·카드조립·쇼츠빌드"},
+    {h:"② 스킬 폴더 3종", t:"Claude 에게 '어떤 순서로 무엇을 하라'고 알려주는 지시서"},
+    {h:"③ 작업 폴더", t:"그날 찍은 사진 + 교안 파일을 넣는 곳. 매 강의마다 새로 만듭니다"},
+    {h:"엔진은 과정에서 배포합니다", t:"1일차에 압축 파일로 받아 원하는 위치에 풀면 됩니다"} ],
+  aside:{ h:"엔진 폴더 안에 있는 것", items:[
+    "src/ — 수집·발행·동기화 스크립트",
+    "scripts/ — 배치·재시도 도구",
+    ".auth/ — 토큰과 로그인 세션 (본인 것)",
+    ".env — API 키 (본인 것)",
+    "posts/ · work/ · thumbs/ — 산출물"] } },
+
+{ type:"prompts", title:"폴더 배치와 .env 만들기",
+  lead:"엔진을 받은 뒤 아래 두 가지를 준비하면 실행 준비가 끝납니다.",
+  cards:[
+    { tag:"① 권장 폴더 배치",
+      body:'<span class="v">C:\Users\사용자명\claude-app\tistory\</span> ← 엔진<br><span class="v">C:\Users\사용자명\.claude\skills\</span> ← 스킬 3폴더<br><br>경로에 <b>한글·공백</b>이 없는 편이 안전합니다' },
+    { tag:"② .env 파일 만들기",
+      body:'메모장을 열고 아래를 입력한 뒤<br>파일명을 <span class="v">.env</span> 로 저장 (엔진 폴더에)<br><br><span class="v">GEMINI_API_KEY=발급받은키</span><br><span class="v">TTS_ENGINE=gemini</span><br><br>⚠️ 확장자가 <b>.env.txt</b> 가 되지 않도록 주의' } ] },
+
+{ type:"concept", eyebrow:"SKILLS", title:"스킬 폴더 구조",
   lead:"<b>~/.claude/skills/</b> 아래에 세 폴더를 넣습니다.",
   bullets:[
     {h:"naver-blog-post", t:"스킬 ① — 사진 선별 · 모자이크 · 원고 · 네이버 발행"},
@@ -315,7 +362,17 @@ window.DECK = [
     ["<b>티스토리 발행이 조용히 실패</b>","일일 공개 발행 15건 초과","다음 날 자동 이어서 발행됨"] ],
   note:"대부분은 <b>스킬이 렌더·발행 전에 먼저 잡아내</b> 시간 낭비 없이 멈춥니다." },
 
-{ type:"concept", sec:"09. 운영 원칙", eyebrow:"IMPORTANT", title:"솔직하게 알려드릴 것",
+{ type:"split", sec:"09. 운영 원칙", title:"개인정보는 자동으로 가려집니다", side:"left", img:"mask",
+  url:"자동 모자이크 결과",
+  lead:"블로그에 쓸 사진만 골라 <b>얼굴·명찰·기관 로고</b>를 자동으로 가립니다.",
+  bullets:[
+    {h:"얼굴 자동 검출", t:"정면·측면 모두 탐지해 모자이크 처리"},
+    {h:"목걸이 명찰", t:"실명이 적힌 명찰도 함께 가립니다"},
+    {h:"검수 시트 자동 생성", t:"놓친 곳이 있는지 눈으로 확인할 수 있게 표시"},
+    {h:"고객사명은 익명 처리", t:"본문에서도 K사·S사 로 자동 변환"} ],
+  note:"완벽하지 않을 수 있어 <b>발행 전 검수 단계</b>가 들어 있습니다. 놓친 부분은 좌표를 지정해 추가로 가릴 수 있습니다." },
+
+{ type:"concept", eyebrow:"IMPORTANT", title:"솔직하게 알려드릴 것",
   lead:"과정에서 반복해 강조하는 세 가지입니다.",
   bullets:[
     {h:"완전 무인은 아닙니다", t:"티스토리 카카오 세션과 Flow 세션은 주기적으로 재로그인이 필요합니다"},
