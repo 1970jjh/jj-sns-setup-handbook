@@ -521,8 +521,8 @@ window.DECK = [
       body:'<a href="https://1970jjh.github.io/jj-sns-setup-handbook/media/jj-creative-skills.zip"><b>jj-creative-skills.zip 내려받기</b></a><br>→ <span class="v">C:\\Users\\사용자명\\.claude\\skills\\</span> 에 품니다<br>스킬 3폴더 + README-먼저읽으세요.md' },
     { tag:"② 엔진 (0.1MB)",
       body:'<a href="https://1970jjh.github.io/jj-sns-setup-handbook/media/jj-creative-engine.zip"><b>jj-creative-engine.zip 내려받기</b></a><br>→ <span class="v">C:\\Users\\사용자명\\claude-app\\tistory\\</span> 에 품니다<br>tistory/ 메인 엔진 + shorts-remotion/ 쇼츠 전용' },
-    { tag:"③ 압축을 푼 뒤 — 꼭 하실 것",
-      body:'스킬 안의 <span class="v">YOUR_</span> 자리표시자를 본인 것으로 바꿉니다.<br>Claude 에게 이렇게 말하면 끝납니다.<br><span class="v">~/.claude/skills 안의 YOUR_ 를 내 정보로 바꿔줘</span>' },
+    { tag:"③ 압축을 푼 뒤 — 꼭 하실 것 ★",
+      body:'스킬 안의 <span class="v">YOUR_</span> 자리표시자를 본인 것으로 바꿉니다.<br>Claude 에게 이렇게 말하면 끝납니다.<br><span class="v">~/.claude/skills 안의 YOUR_ 를 내 정보로 바꿔줘</span><br><br>🔴 특히 <span class="v">naver-blog-post\\scripts\\naver_common.py</span> 6번째 줄<br><span class="v">BLOG_ID = "YOUR_NAVER_BLOG_ID"</span><br>여기가 틀리면 글이 <b>엉뚱한 블로그로</b> 갑니다' },
     { tag:"④ 패키지 설치 (2~3분)",
       body:'엔진 폴더에서<br><span class="v">pip install -r requirements.txt</span><br><span class="v">python -m playwright install chromium</span>' } ] },
 
@@ -583,6 +583,18 @@ window.DECK = [
     ["<b>ffmpeg 를 찾을 수 없음</b>","Path 미등록","환경변수 Path 에 <b>C:\\ffmpeg\\bin</b> 추가 후 창 새로 열기"],
     ["<b>npm install 실패</b>","Node 미설치 또는 구버전","Node.js <b>LTS</b> 재설치"],
     ["<b>한도 초과 안내</b>","Pro 요금제 사용","<b>MAX 100</b> 으로 상향"] ] },
+
+{ type:"table", sec:"08. 오류 대처", title:"엔진 · 토큰 단계 — 실제로 겪은 오류",
+  head:["화면에 뜨는 메시지","무슨 뜻인가","해결"],
+  rows:[
+    ["<b>ModuleNotFoundError: No module named 'PIL'</b>","필요한 부품이 아직 안 깔림","엔진 폴더에서 <b>pip install -r requirements.txt</b>"],
+    ["<b>FileNotFoundError: src/publish.py</b>","엔진 폴더 위치가 스킬에 적힌 경로와 다름","엔진을 <b>C:\\Users\\사용자명\\claude-app\\tistory\\</b> 로 옮기기"],
+    ["<b>GEMINI_API_KEY 관련 오류</b>","<b>.env</b> 가 없거나 <b>.env.txt</b> 로 저장됨",'메모장 저장 시 파일명을 <b>".env"</b> 처럼 따옴표로 감싸기'],
+    ["<b>403 ... API has not been used</b>","유튜브 API 를 안 켬 <b>(가장 흔함)</b>","Cloud 콘솔에서 <b>상태: 사용 설정됨</b> 확인"],
+    ["<b>403 access_denied</b>","테스트 사용자에 내 계정이 없음","OAuth 동의 화면 → 대상 → <b>Add users</b>"],
+    ["<b>이 앱은 Google에서 확인하지 않았습니다</b>","내가 만든 앱이라 정상","<b>[고급]</b> → <b>[앱이름(안전하지 않음)으로 이동]</b>"],
+    ["<b>일주일 뒤 갑자기 인증 창이 뜸</b>","테스트 모드 7일 만료 (정상)","한 번 로그인하면 또 7일 갑니다"] ],
+  note:"🔴 초보자가 가장 많이 막히는 건 <b>403 두 가지</b>입니다. 원인(API 미활성·테스트 사용자 누락)과 증상(업로드 실패)이 멀리 떨어져 있어 스스로 찾기 어렵습니다. 이 표를 그대로 보시면 됩니다." },
 
 { type:"table", title:"발행 단계", head:["증상","원인","해결"],
   rows:[
