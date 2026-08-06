@@ -4,6 +4,17 @@ window.DECK = [
   subtitle:"아무것도 깔려 있지 않은 윈도우 PC 기준 &middot; A to Z 사용설명서<br>순서대로 따라만 하시면 혼자서도 끝낼 수 있습니다",
   meta:["Windows 10/11 + Claude Desktop 앱","소요 2~3시간","JJ Creative 교육연구소"] },
 
+{ type:"artifact", sec:"00. 시연 영상", title:"먼저 보세요 — 실제 자동화 시연 (4분 16초)",
+  kind:"iframe",
+  src:"https://1970jjh.github.io/jj-sns-setup-handbook/media/jj-sns-demo.mp4",
+  url:"강의 사진 폴더 하나 → SNS 6종 완성까지 전 과정 녹화",
+  bullets:[
+    "카드뉴스 스타일 20종 중 하나를 고르는 장면",
+    "사람 얼굴이 자동으로 모자이크 처리되는 과정",
+    "이미지가 AI 로 생성되고, 네이버 블로그가 스스로 발행되는 화면",
+    "완성된 6개 채널을 하나씩 열어 확인 · 유튜브 쇼츠 재생"],
+  note:"사람이 한 일은 <b>두 가지뿐</b>입니다 — ① 사진을 폴더에 넣는다 ② 스타일 번호를 고른다. 재생이 안 되면 <a href='https://1970jjh.github.io/jj-sns-setup-handbook/media/jj-sns-demo.mp4'>이 주소</a>로 직접 열어보세요." },
+
 { type:"statement", topic:"claude",
   big:'사진 폴더 하나가<br><span class="hl">SNS 6종</span>이 됩니다',
   sub:"네이버 블로그 · 티스토리 · 홈페이지 · 스레드 · 인스타그램 · 유튜브 쇼츠" },
@@ -273,6 +284,18 @@ window.DECK = [
     ["<b>Google Flow</b>","~/.claude/.image-flow-profile","약 8시간"] ],
   note:"🔴 로그인은 <b>본인이 직접</b> 창에서 합니다. AI 는 아이디·비밀번호를 대신 입력하지 않습니다. 창이 뜨면 로그인만 해주시면 그 다음은 다시 전부 자동입니다." },
 
+{ type:"prompts", title:"최초 1회 로그인 — 이렇게 미리 해둡니다",
+  lead:"설치를 마친 뒤 <b>첫 실행 전에</b> 세 곳을 한 번씩 로그인해 두면, 작업 도중 멈추지 않습니다. 창이 뜨면 <b>본인이 직접</b> 로그인만 하시면 됩니다.",
+  cards:[
+    { tag:"① 네이버 (최초 1회)",
+      body:'<span class="v">python ~/.claude/skills/naver-blog-post/scripts/naver_login.py</span><br><br>창이 열리면 네이버에 로그인합니다.<br>한 번 해두면 <b>거의 안 끊깁니다</b>' },
+    { tag:"② 티스토리 · 카카오 (주기적)",
+      body:'엔진 폴더에서<br><span class="v">python src/login.py</span><br><br>카카오 계정으로 로그인합니다.<br>로그인 화면의 <b>\'로그인 상태 유지\'</b>를 꼭 체크하세요' },
+    { tag:"③ Google Flow (약 8시간)",
+      body:'<span class="v">python ~/.claude/skills/image-flow/scripts/flow_login.py</span><br><br>이미지 생성에 씁니다. 만료되면<br>Claude 에게 <b>"flow 로그인 다시 해줘"</b> 라고만 말하면 됩니다' },
+    { tag:"확인 — 세션이 살아 있나",
+      body:'<span class="v">python ~/.claude/skills/naver-blog-post/scripts/naver_post.py --check</span><br><br>세션 상태를 알려줍니다.<br>작업 중 만료되면 창이 자동으로 열리니<br><b>로그인만</b> 해주시면 이어서 진행됩니다' } ] },
+
 { type:"chapter", topic:"vercel", kicker:"STEP 6", num:"6", icon:"🚀",
   title:"배포 · 이미지 호스팅",
   sub:"인스타 발행에 반드시 필요합니다",
@@ -302,13 +325,25 @@ window.DECK = [
     {h:"① 엔진 폴더", t:"실제 동작하는 파이썬 스크립트 모음 — 수집·모자이크·발행·카드조립·쇼츠빌드"},
     {h:"② 스킬 폴더 3종", t:"Claude 에게 '어떤 순서로 무엇을 하라'고 알려주는 지시서"},
     {h:"③ 작업 폴더", t:"그날 찍은 사진 + 교안 파일을 넣는 곳. 매 강의마다 새로 만듭니다"},
-    {h:"엔진은 과정에서 배포합니다", t:"1일차에 압축 파일로 받아 원하는 위치에 풀면 됩니다"} ],
+    {h:"바로 내려받으실 수 있습니다", t:"다음 슬라이드의 링크에서 스킬·엔진 압축 파일을 받습니다"} ],
   aside:{ h:"엔진 폴더 안에 있는 것", items:[
     "src/ — 수집·발행·동기화 스크립트",
     "scripts/ — 배치·재시도 도구",
     ".auth/ — 토큰과 로그인 세션 (본인 것)",
     ".env — API 키 (본인 것)",
     "posts/ · work/ · thumbs/ — 산출물"] } },
+
+{ type:"prompts", sec:"07. 스킬", title:"내려받기 — 스킬 3종 · 엔진",
+  lead:"아래 두 압축 파일을 받아 압축을 푸세요. <b>스킬 먼저, 엔진 다음</b> 순서입니다.",
+  cards:[
+    { tag:"① 스킬 3종 (4.0MB)",
+      body:'<a href="https://1970jjh.github.io/jj-sns-setup-handbook/media/jj-creative-skills.zip"><b>jj-creative-skills.zip 내려받기</b></a><br><br>naver-blog-post · tistory-thread-insta-hp-youtube · image-flow<br>+ <span class="v">README-먼저읽으세요.md</span><br><br>→ <span class="v">C:\\Users\\사용자명\\.claude\\skills\\</span> 에 품니다' },
+    { tag:"② 엔진 (0.1MB)",
+      body:'<a href="https://1970jjh.github.io/jj-sns-setup-handbook/media/jj-creative-engine.zip"><b>jj-creative-engine.zip 내려받기</b></a><br><br><span class="v">tistory/</span> 메인 엔진 · <span class="v">shorts-remotion/</span> 쇼츠 전용<br>+ <span class="v">README-엔진설치.md</span><br><br>→ <span class="v">C:\\Users\\사용자명\\claude-app\\tistory\\</span> 에 품니다' },
+    { tag:"③ 압축을 푼 뒤 — 꼭 하실 것",
+      body:'스킬 파일 안의 <span class="v">YOUR_</span> 자리표시자를 본인 것으로 바꿉니다.<br>Claude 에게 이렇게 말하면 한 번에 처리됩니다.<br><br><span class="v">~/.claude/skills 안의 YOUR_ 자리표시자를 내 정보로 바꿔줘</span>' },
+    { tag:"④ 패키지 설치",
+      body:'엔진 폴더에서<br><span class="v">pip install -r requirements.txt</span><br><span class="v">python -m playwright install chromium</span><br><br>2~3분 걸립니다' } ] },
 
 { type:"prompts", title:"폴더 배치와 .env 만들기",
   lead:"엔진을 받은 뒤 아래 두 가지를 준비하면 실행 준비가 끝납니다.",
@@ -329,6 +364,22 @@ window.DECK = [
     "①이 그것을 참조합니다",
     "하나만 설치하면 스타일이 적용되지 않습니다",
     "스타일 대시보드는 웹 URL 이라 설치 불필요"] } },
+
+{ type:"concept", eyebrow:"OPTIONAL", title:"Remotion 설치 — 유튜브 쇼츠를 만들 분만",
+  lead:"쇼츠를 안 만드셔도 <b>나머지 5개 채널은 정상 동작</b>합니다. 쇼츠가 필요할 때만 하세요.",
+  bullets:[
+    {h:"Remotion 이 무엇인가", t:"영상을 코드로 만드는 도구. 자막·음성·장면 전환을 붙여 1080×1920 세로 영상을 뽑습니다"},
+    {h:"GitHub 에서 따로 받지 않습니다", t:"엔진 압축의 shorts-remotion 폴더에서 npm install 한 번이면 알아서 내려받습니다"},
+    {h:"Node.js 가 먼저 있어야 합니다", t:"node -v 로 확인. 버전이 안 나오면 STEP 1 의 Node.js 설치부터"},
+    {h:"유튜브가 자동으로 쇼츠 분류", t:"세로 + 60초 이내면 쇼츠가 됩니다. 엔진이 렌더 전에 길이를 미리 검사합니다"} ],
+  aside:{ h:"설치 — 마음의 준비를 하고", items:[
+    "cd shorts-remotion 폴더",
+    "npm install",
+    "5~10분 걸립니다 (멈춘 듯해도 정상)",
+    "500MB~1GB 가 생깁니다",
+    "warn 경고는 괜찮고 error 만 아니면 됩니다",
+    "확인 — npx remotion studio",
+    "ShortsVideo 항목이 보이면 성공"] } },
 
 { type:"prompts", title:"설치 점검 · 첫 실행",
   lead:"아래를 순서대로 확인한 뒤, 사진 폴더를 만들고 스킬을 부릅니다.",
