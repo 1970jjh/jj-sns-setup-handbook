@@ -258,6 +258,133 @@ window.DECK = [
     {h:"장기 토큰으로 교환", t:"60일 유효, 만료 전 재발급"} ],
   note:"토큰은 비밀번호와 같습니다. 채팅창·문서에 붙여넣지 말고 <b>.auth 폴더 파일</b>에만 저장하세요." },
 
+/* ───────── 실제 화면 단계별 — 스레드 / 인스타 ───────── */
+{ type:"chapter", topic:"claude", kicker:"화면으로 따라하기", num:"A", icon:"📸",
+  title:"스레드 · 인스타 토큰 — 실제 화면",
+  sub:"빨간 상자만 순서대로 누르시면 됩니다",
+  points:["Meta 개발자 사이트 접속","앱 만들기 · 이용 사례 선택","권한 확인 후 토큰 생성"] },
+
+{ type:"shot", sec:"A. 스레드·인스타", imgid:"th01_home",
+  title:"① Meta 개발자 사이트 접속",
+  url:"developers.facebook.com",
+  note:"페이스북 계정으로 로그인합니다. 별도 가입은 필요 없습니다." },
+
+{ type:"shot", imgid:"th02_applist", title:"② 앱 만들기",
+  url:"developers.facebook.com/apps",
+  note:"우측 상단 <b>[앱 만들기]</b> 를 누릅니다." },
+
+{ type:"shot", imgid:"th03_create_name", title:"③ 앱 이름과 연락처",
+  url:"앱 상세 정보 단계",
+  note:"앱 이름은 자유롭게 정하시면 됩니다. 연락처 이메일은 본인 주소가 자동으로 채워집니다." },
+
+{ type:"shot", imgid:"th05_usecase_pick", title:"④ 이용 사례에서 Threads API 액세스 선택",
+  url:"이용 사례 단계 — 가장 중요",
+  note:"🔴 여기서 <b>Threads API 액세스</b> 를 고릅니다. 인스타그램은 나중에 이용 사례를 하나 더 추가하면 됩니다." },
+
+{ type:"shot", imgid:"th02b_app_dashboard", title:"⑤ 앱 대시보드 — 모든 설정의 출발점",
+  url:"앱을 만든 뒤 나오는 화면",
+  note:"왼쪽 <b>[이용 사례]</b> 에서 권한과 토큰을, <b>[앱 역할]</b> 에서 테스터를 설정합니다." },
+
+{ type:"shot", imgid:"th07_permissions", title:"⑥ 스레드 권한 확인",
+  url:"이용 사례 → Threads API → 권한 및 기능",
+  note:"<b>threads_basic</b> 과 <b>threads_content_publish</b> 가 '테스트 준비 완료' 여야 글을 올릴 수 있습니다." },
+
+{ type:"shot", imgid:"th09_token_gen", title:"⑦ 스레드 앱 ID·시크릿과 토큰 생성기 위치",
+  url:"이용 사례 → Threads API → 설정",
+  note:"위쪽에 앱 ID·시크릿이 있고, 아래로 내리면 <b>사용자 토큰 생성기</b> 가 있습니다." },
+
+{ type:"shot", imgid:"th10_token_generator", title:"⑧ 액세스 토큰 생성하기",
+  url:"사용자 토큰 생성기",
+  note:"내 스레드 계정 옆 <b>[액세스 토큰 생성하기]</b> 를 누르면 긴 문자열이 나옵니다. 그것이 토큰입니다." },
+
+{ type:"shot", sec:"A. 스레드·인스타", imgid:"ig01_permissions",
+  title:"⑨ 인스타그램 — 권한 3가지와 앱 ID",
+  url:"이용 사례 → Instagram → API 설정",
+  note:"instagram_business_basic · manage_comments · manage_messages 세 가지가 필요합니다." },
+
+{ type:"shot", imgid:"ig02_token_setup", title:"⑩ 인스타 토큰 생성",
+  url:"2. 액세스 토큰 생성",
+  note:"펼치면 내 계정이 보입니다. <b>[토큰 생성]</b> 을 누르면 토큰이 나옵니다." },
+
+{ type:"shot", imgid:"ig04_roles_tester", title:"⑪ 앱 역할 — 테스터 확인",
+  url:"앱 역할 → 역할",
+  note:"본인 계정이 테스터로 들어가 있어야 토큰이 정상 동작합니다." },
+
+{ type:"prompts", sec:"A. 스레드·인스타", title:"⑫ 받은 토큰을 어디에 넣나 — PowerShell 로",
+  lead:"🔴 <b>토큰을 채팅창에 붙여넣지 마세요.</b> 대화 기록에 그대로 남습니다. PowerShell 로 <span class=\"v\">.env</span> 파일에 직접 씁니다.",
+  cards:[
+    { tag:"① PowerShell 열기",
+      body:'윈도우 검색창에 <span class="v">PowerShell</span> 입력 → 실행<br>엔진 폴더로 이동합니다<br><br><span class="v">cd C:\\Users\\사용자명\\claude-app\\tistory</span>' },
+    { tag:"② 토큰 써넣기 — 한 줄씩",
+      body:'따옴표 안만 본인 값으로 바꿉니다<br><br><span class="v">Add-Content .env \'IG_USER_ID=여기에값\'</span><br><span class="v">Add-Content .env \'IG_ACCESS_TOKEN=여기에값\'</span><br><span class="v">Add-Content .env \'THREADS_USER_ID=여기에값\'</span><br><span class="v">Add-Content .env \'THREADS_ACCESS_TOKEN=여기에값\'</span>' },
+    { tag:"③ 제대로 들어갔는지 확인",
+      body:'키 이름만 보여주는 안전한 확인 방법입니다<br><br><span class="v">Get-Content .env | ForEach-Object { ($_ -split \'=\')[0] }</span><br><br>다섯 줄이 나오면 성공입니다' },
+    { tag:"④ 왜 이렇게 하나",
+      body:'토큰은 <b>비밀번호와 같습니다</b>.<br>채팅창·메모장·카톡에 붙여넣으면 기록이 남고,<br>그 기록이 유출되면 계정이 넘어갑니다.<br><br><span class="v">.env</span> 파일은 이 폴더 밖으로 나가지 않습니다' } ] },
+
+/* ───────── 실제 화면 단계별 — 유튜브 ───────── */
+{ type:"chapter", topic:"vercel", kicker:"화면으로 따라하기", num:"B", icon:"📸",
+  title:"유튜브 인증 — 실제 화면",
+  sub:"셋 중 가장 단계가 많습니다. 천천히 따라오세요",
+  points:["구글 클라우드 프로젝트 만들기","API 켜고 동의 화면 구성","클라이언트 ID 발급 · 테스트 사용자 추가"] },
+
+{ type:"shot", sec:"B. 유튜브 인증", imgid:"yt01_console_home",
+  title:"① Google Cloud 콘솔 접속",
+  url:"console.cloud.google.com",
+  note:"유튜브를 쓰는 구글 계정으로 로그인합니다." },
+
+{ type:"shot", imgid:"yt02_project_create", title:"② 새 프로젝트 만들기",
+  url:"console.cloud.google.com/projectcreate",
+  note:"프로젝트 이름을 정하고 <b>[만들기]</b>. 회사(Workspace) 계정이면 결제 계정 선택이 추가로 나옵니다 — 개인 Gmail 은 나오지 않습니다." },
+
+{ type:"shot", imgid:"yt05_nav_menu", title:"③ 왼쪽 위 ☰ → API 및 서비스",
+  url:"탐색 메뉴",
+  note:"메뉴가 안 보이면 화면 왼쪽 위 <b>줄 세 개(☰)</b> 아이콘을 누르세요." },
+
+{ type:"shot", imgid:"yt06_api_menu", title:"④ 여기서 세 곳을 씁니다",
+  url:"API 및 서비스",
+  note:"<b>라이브러리</b>(API 켜기) · <b>사용자 인증 정보</b>(클라이언트) · <b>OAuth 동의 화면</b>(앱 정보)" },
+
+{ type:"shot", imgid:"yt03_api_enable", title:"⑤ YouTube Data API v3 — 사용",
+  url:"라이브러리 → YouTube Data API v3",
+  note:"검색해서 찾은 뒤 <b>[사용]</b> 을 누릅니다." },
+
+{ type:"shot", imgid:"yt04b_api_enabled_check", title:"⑥ 반드시 확인 — '사용 설정됨'",
+  url:"API/서비스 세부정보",
+  note:"🔴 이걸 건너뛰면 나중에 업로드에서 <b>403 오류</b>가 납니다. 실제로 가장 많이 걸리는 함정입니다." },
+
+{ type:"shot", imgid:"yt07_oauth_start", title:"⑦ OAuth 동의 화면 — 시작하기",
+  url:"왼쪽 메뉴 → OAuth 동의 화면",
+  note:"처음이면 '아직 구성되지 않음' 이 뜹니다. <b>[시작하기]</b> 를 누르세요." },
+
+{ type:"shot", imgid:"yt09_oauth_appinfo", title:"⑧ 앱 정보 입력",
+  url:"프로젝트 구성 1단계",
+  note:"앱 이름은 자유롭게, 지원 이메일은 목록에서 본인 계정을 고릅니다." },
+
+{ type:"shot", imgid:"yt10_oauth_audience", title:"⑨ 대상은 반드시 [외부]",
+  url:"프로젝트 구성 2단계",
+  note:"🔴 <b>[내부]</b> 를 고르면 나중에 인증이 막힙니다. 개인 계정은 [외부] 만 보일 수도 있습니다." },
+
+{ type:"shot", imgid:"yt13_clients_menu", title:"⑩ 클라이언트 만들기",
+  url:"왼쪽 메뉴 → 클라이언트",
+  note:"<b>[+ 클라이언트 만들기]</b> 를 누릅니다." },
+
+{ type:"shot", imgid:"yt14_app_type", title:"⑪ 유형은 [데스크톱 앱]",
+  url:"OAuth 클라이언트 ID 만들기",
+  note:"웹 애플리케이션이 아닙니다. 반드시 <b>데스크톱 앱</b> 을 고르세요." },
+
+{ type:"shot", imgid:"yt16_client_created", title:"⑫ JSON 다운로드 — 창 닫기 전에!",
+  url:"OAuth 클라이언트 생성됨",
+  note:"🔴 이 창을 닫으면 비밀번호를 <b>다시 볼 수 없습니다</b>. 받은 파일은 엔진 폴더에 둡니다." },
+
+{ type:"shot", imgid:"yt17_test_users", title:"⑬ 테스트 사용자 추가",
+  url:"OAuth 동의 화면 → 대상",
+  note:"🔴 게시 상태는 <b>'테스트 중' 그대로</b> 둡니다. [앱 게시] 를 누르면 구글 검수에 걸려 업로드가 막힙니다." },
+
+{ type:"shot", imgid:"yt18_test_user_added", title:"⑭ 완료 — 본인 계정이 보이면 성공",
+  url:"테스트 사용자 목록",
+  note:"비어 있으면 실행할 때 <b>403 access_denied</b> 가 납니다. 꼭 확인하세요." },
+
 { type:"concept", eyebrow:"AUTOMATION BOUNDARY", title:"어디까지 Claude 가 하고, 어디부터 본인이 하나",
   lead:"토큰 발급은 <b>보안상 100% 자동이 불가능</b>합니다. 경계를 분명히 알아두세요.",
   bullets:[
