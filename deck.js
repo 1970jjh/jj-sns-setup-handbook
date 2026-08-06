@@ -44,6 +44,20 @@ window.DECK = [
     "Claude in Chrome — 네이버 차단으로 사용 불가",
     "유료 이미지 API 불필요 — Flow 구독으로 0원"] } },
 
+{ type:"table", sec:"00. 순서", title:"전체 순서 — 이 순서대로만 하시면 됩니다",
+  head:["순서","무엇을","걸리는 시간"],
+  rows:[
+    ["<b>STEP 0</b>","계정 만들기 (Claude MAX · SNS 6종 · GitHub)","30분 · <b>과정 전에 미리</b>"],
+    ["<b>STEP 1</b>","프로그램 4개 설치 (Python · Node.js · Git · ffmpeg)","20분"],
+    ["<b>STEP 2</b>","Claude 앱 + Claude Code 설치, 커넥터 켜기","15분"],
+    ["<b>STEP 3</b>","파이썬 부품 설치 (명령어 복사·붙여넣기)","5분"],
+    ["<b>STEP 4</b>","열쇠 받기 — Gemini · 스레드 · 인스타 · 유튜브","<b>60분 · 가장 오래 걸림</b>"],
+    ["<b>STEP 5</b>","네이버 · 티스토리 · Flow 로그인 한 번씩","5분"],
+    ["<b>STEP 6</b>","GitHub · Vercel 연결 (인스타 발행에 필요)","10분"],
+    ["<b>STEP 7</b>","스킬 3종 + 엔진 내려받아 설치","20분"],
+    ["<b>끝</b>","사진 폴더 지정 → 스타일 번호 고르기","<b>이게 전부입니다</b>"] ],
+  note:"💡 전부 <b>2~3시간</b> 이면 끝납니다. STEP 4(열쇠 받기)가 제일 길고 어렵습니다. 그 구간은 <b>실제 화면 27장</b>으로 하나씩 짚어드립니다. 화면 위 <b>목차</b> 를 누르면 원하는 단계로 바로 갈 수 있습니다." },
+
 { type:"table", sec:"00. 용어", title:"먼저 — 앞으로 나올 낯선 말 11가지",
   head:["말","쉽게 말하면","언제 나오나"],
   rows:[
@@ -327,10 +341,12 @@ window.DECK = [
   url:"앱 역할 → 역할",
   caption:"본인 계정이 테스터로 들어가 있어야 토큰이 정상 동작합니다." },
 
-{ type:"prompts", sec:"A. 스레드·인스타", title:"⑫ 받은 토큰을 어디에 넣나 — PowerShell 로",
-  lead:"🔴 <b>토큰을 채팅창에 붙여넣지 마세요.</b> 대화 기록에 그대로 남습니다. PowerShell 로 <span class=\"v\">.env</span> 파일에 직접 씁니다.",
+{ type:"prompts", sec:"A. 스레드·인스타", title:"⑫ 받은 토큰은 어떻게 보관하나",
+  lead:"🔴 <b>토큰을 채팅창에 붙여넣지 마세요.</b> 대화 기록에 그대로 남습니다. <b>메모장에 잠깐 적어두었다가</b>, 엔진을 설치한 뒤 아래 방법으로 옮깁니다.",
   cards:[
-    { tag:"① PowerShell 열기",
+    { tag:"⚠️ 먼저 — 지금은 적어만 두세요",
+      body:'토큰을 넣을 <span class="v">.env</span> 파일은 <b>엔진 폴더 안</b>에 만듭니다.<br>엔진은 <b>뒤쪽 STEP 7</b> 에서 내려받습니다.<br><br>👉 지금은 받은 토큰을 <b>메모장에 임시로</b> 붙여두고,<br>　 엔진 설치 후 아래 ①②③ 을 하시면 됩니다' },
+    { tag:"① PowerShell 열기 (엔진 설치 후)",
       body:'윈도우 검색창에 <span class="v">PowerShell</span> 입력 → 실행<br>엔진 폴더로 이동합니다<br><br><span class="v">cd C:\\Users\\사용자명\\claude-app\\tistory</span>' },
     { tag:"② 토큰 써넣기 — 한 줄씩",
       body:'따옴표 안만 본인 값으로 바꿉니다<br><br><span class="v">Add-Content .env \'IG_USER_ID=여기에값\'</span><br><span class="v">Add-Content .env \'IG_ACCESS_TOKEN=여기에값\'</span><br><span class="v">Add-Content .env \'THREADS_USER_ID=여기에값\'</span><br><span class="v">Add-Content .env \'THREADS_ACCESS_TOKEN=여기에값\'</span>' },
@@ -403,7 +419,7 @@ window.DECK = [
   caption:"비어 있으면 실행할 때 <b>403 access_denied</b> 가 납니다. 꼭 확인하세요." },
 
 { type:"prompts", sec:"B. 유튜브 인증", title:"⑮ 받은 JSON 파일은 어디에 두나",
-  lead:"다운로드 폴더에 있는 <span class=\"v\">client_secret_…json</span> 을 옮겨야 엔진이 찾습니다.",
+  lead:"다운로드 폴더에 있는 <span class=\"v\">client_secret_…json</span> 을 옮겨야 엔진이 찾습니다. <b>지금 바로 옮겨도 됩니다</b> — 엔진 폴더가 아니라 <b>내 사용자 폴더</b>라서 미리 해두면 됩니다.",
   cards:[
     { tag:"① 파일 위치 확인",
       body:'보통 여기에 받아집니다<br><span class="v">C:\\Users\\사용자명\\Downloads\\</span><br><br>파일명은 이런 모양입니다<br><span class="v">client_secret_숫자-문자열.apps.<br>googleusercontent.com.json</span>' },
