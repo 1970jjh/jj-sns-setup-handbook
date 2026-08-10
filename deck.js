@@ -644,6 +644,25 @@ window.DECK = [
     "확인 — npx remotion studio",
     "ShortsVideo 항목이 보이면 성공"] } },
 
+{ type:"concept", sec:"07. 스킬", eyebrow:"헷갈리기 쉬움", title:"앱 설정에 스킬이 안 보입니다 — 정상입니다",
+  lead:"Claude Desktop <b>앱</b>과 Claude <b>Code(CLI)</b>는 스킬을 두는 곳이 다릅니다.",
+  bullets:[
+    {h:"앱 설정 → 스킬 목록에는 안 나옵니다", t:"거기는 앱에 직접 업로드한 스킬만 보여줍니다. 우리 스킬 3개는 폴더에 두는 방식이라 표시되지 않습니다"},
+    {h:"확인은 PowerShell 에서", t:"claude 실행 후 대화창에 슬래시 하나만 치면 목록이 펼쳐집니다. 거기서 세 개가 보이면 정상입니다"},
+    {h:"왜 앱에 올리지 않나", t:"이 스킬들은 파이썬을 실행하고 브라우저를 조작합니다. 앱 대화창은 그런 일을 못 합니다"},
+    {h:"앱에 올려도 소용없습니다", t:"목록에만 뜨고 실행은 안 됩니다. 폴더에 두는 것이 맞습니다"} ],
+  aside:{ h:"확인 순서", items:[
+    "작업표시줄에서 PowerShell 실행",
+    "cd C:\\Users\\사용자명\\claude-app\\tistory",
+    "claude",
+    "대화창에 슬래시 한 글자만 입력",
+    "",
+    "naver-blog-post",
+    "tistory-thread-insta-hp-youtube",
+    "image-flow",
+    "",
+    "이 셋이 보이면 설치 성공입니다"] } },
+
 { type:"prompts", title:"설치 점검 · 첫 실행",
   lead:"아래를 순서대로 확인한 뒤, 사진 폴더를 만들고 스킬을 부릅니다.",
   cards:[
@@ -664,7 +683,9 @@ window.DECK = [
     ["<b>브라우저가 안 열림 / Executable doesn't exist</b>","크로미움 미설치","<b>python -m playwright install chromium</b>"],
     ["<b>ffmpeg 를 찾을 수 없음</b>","Path 미등록","환경변수 Path 에 <b>C:\\ffmpeg\\bin</b> 추가 후 창 새로 열기"],
     ["<b>npm install 실패</b>","Node 미설치 또는 구버전","Node.js <b>LTS</b> 재설치"],
-    ["<b>한도 초과 안내</b>","Pro 요금제 사용","<b>MAX 100</b> 으로 상향"] ] },
+    ["<b>한도 초과 안내</b>","Pro 요금제 사용","<b>MAX 100</b> 으로 상향"],
+    ["<b>스킬이 목록에 안 보임</b>","폴더를 한 겹 더 감쌌거나 Claude 재시작 안 함","<b>skills\\naver-blog-post\\SKILL.md</b> 구조 확인 후 Claude Code 재시작"] ],
+  note:"💡 대부분은 <b>PATH 등록</b>과 <b>창을 새로 열지 않은 것</b>이 원인입니다. 환경변수를 바꿨다면 <b>PowerShell 창을 껐다 다시 여세요</b> — 열려 있던 창은 옛 설정을 그대로 씁니다." },
 
 { type:"table", sec:"08. 오류 대처", title:"엔진 · 토큰 단계 — 실제로 겪은 오류",
   head:["화면에 뜨는 메시지","무슨 뜻인가","해결"],
