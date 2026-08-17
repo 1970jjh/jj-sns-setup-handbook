@@ -52,6 +52,10 @@ window.IMG = {
   yt16_client_created: { file: "assets/img/setup/yt16_client_created.jpg" },
   yt17_test_users: { file: "assets/img/setup/yt17_test_users.jpg" },
   yt18_test_user_added: { file: "assets/img/setup/yt18_test_user_added.jpg" },
+  ig00_business_path: { file: "assets/img/setup/ig00_business_path.jpg" },
+  mt01_account_steps: { file: "assets/img/setup/mt01_account_steps.jpg" },
+  th04b_usecase_filter: { file: "assets/img/setup/th04b_usecase_filter.jpg" },
+  th04c_portfolio_skip: { file: "assets/img/setup/th04c_portfolio_skip.jpg" },
 };
 
 window.SECTIONS = {

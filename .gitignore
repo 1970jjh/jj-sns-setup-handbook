@@ -1,1 +1,11 @@
 .vercel
+
+# 슬라이드 검수용 임시 캡처 폴더 (배포에 불필요)
+_audit*/
+_chk*/
+_final*/
+_gap*/
+_last/
+_steps/
+_v[0-9]*/
+_*.png
