@@ -61,14 +61,15 @@ window.IMG = {
 window.SECTIONS = {
   accounts: {
     title: "계정 · 서비스 가입 (과정 전 사전과제)",
-    count: 6,
+    count: 7,
     items: [
       { name: "Claude 요금제 — MAX 100 구독", url: "https://claude.com/pricing", type: "runapp" },
       { name: "네이버 블로그 개설", url: "https://blog.naver.com", type: "link" },
       { name: "티스토리 (카카오 계정)", url: "https://www.tistory.com", type: "link" },
       { name: "인스타그램 — 비즈니스 계정 전환", url: "https://help.instagram.com/502981923235522", type: "docs" },
       { name: "유튜브 채널 만들기", url: "https://www.youtube.com/create_channel", type: "link" },
-      { name: "GitHub 가입 — 우측 상단 Sign up", url: "https://github.com", type: "github" },
+      { name: "GitHub 가입 — 반드시 지메일 계정으로", url: "https://github.com", type: "github" },
+      { name: "Vercel 가입 — GitHub 계정으로 로그인", url: "https://vercel.com/signup", type: "vercel" },
     ],
   },
   runtime: {
