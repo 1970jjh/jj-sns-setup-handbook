@@ -59,6 +59,7 @@ window.IMG = {
   cx_apps: { file: "assets/img/cx_apps.jpg" },
   cx_store: { file: "assets/img/cx_store.jpg" },
   cx_toggle: { file: "assets/img/cx_toggle.jpg" },
+  cx_plugins: { file: "assets/img/cx_plugins.jpg" },
 };
 
 window.SECTIONS = {

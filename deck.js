@@ -40,7 +40,7 @@ window.DECK = [
     {h:"⑥ 커넥터 (선택이지만 권장)", t:"GitHub · Vercel — 켜두면 배포를 Claude 가 대신합니다"} ],
   aside:{ h:"참고 — 이건 이렇습니다", items:[
     "MCP 서버 — 필요 없습니다 (0개)",
-    "커넥터 — GitHub · Vercel · PlayMCP 는 켜두면 편합니다",
+    "플러그인 — GitHub · Vercel 만 켭니다 (Playwright 는 켜지 않습니다)",
     "Claude in Chrome — 네이버 차단으로 사용 불가",
     "유료 이미지 API 불필요 — Flow 구독으로 0원"] } },
 
@@ -187,7 +187,7 @@ window.DECK = [
     {icon:"3️⃣", h:"Node.js 설치", t:"CLI 설치에 npm 이<br>먼저 필요합니다"},
     {icon:"4️⃣", h:"Claude Code(CLI) 설치", t:"npm install -g<br>@anthropic-ai/claude-code"},
     {icon:"5️⃣", h:"Python + ffmpeg", t:"스크립트·영상 렌더용"},
-    {icon:"6️⃣", h:"커넥터 활성화", t:"GitHub · Vercel · PlayMCP"} ],
+    {icon:"6️⃣", h:"플러그인 활성화", t:"GitHub · Vercel <b>만</b>"} ],
   note:"🔴 <b>순서가 중요합니다.</b> Node.js 없이 Claude Code 를 설치하려 하면 npm 명령 자체가 없어 실패합니다." },
 
 { type:"split", title:"Claude Code (CLI) 설치", side:"left", img:"npm_cc",
@@ -207,8 +207,19 @@ window.DECK = [
     {h:"설정 → 커넥터 열기", t:"좌측 메뉴 하단의 '커넥터'"},
     {h:"GitHub 연동 활성화", t:"저장소 생성·푸시를 Claude 가 수행"},
     {h:"Vercel 활성화", t:"배포와 URL 확인까지 자동"},
-    {h:"PlayMCP 활성화", t:"브라우저 자동화 보조"} ],
+    {h:"Playwright 는 켜지 마세요", t:"🔴 발행 스크립트와 충돌합니다 — 다음 장"} ],
   note:"✅ 커넥터를 켜면 STEP 6 의 GitHub·Vercel 수동 작업이 대부분 사라집니다. <b>단, 최초 계정 연결 승인은 본인이 클릭</b>해야 합니다." },
+  { type:"shot", sec:"02. Claude",
+    img:"cx_plugins", url:"Claude Desktop → 설정 → 플러그인 → 파트너",
+    title:"플러그인 활성화 — GitHub · Vercel 두 개만",
+    caption:"<b>디렉터리 → 플러그인 → 파트너</b> 탭에서 <b>Github</b> 와 <b>Vercel</b> 을 설치합니다. 가운데 <b>Playwright</b> 는 <b>설치하지 마세요.</b>",
+    steps:[
+      "설정 <b>디렉터리</b> → 왼쪽 <b>플러그인</b>",
+      "위쪽 <b>파트너</b> 탭 선택",
+      "<b>Github</b> 설치 — 저장소 만들기·푸시를 클로드가 대신",
+      "<b>Vercel</b> 설치 — 배포 상태·주소 확인을 클로드가 대신"
+    ],
+    note:"🔴 <b>Playwright 는 설치하지 마세요.</b> 네이버·티스토리 발행은 스킬이 <b>자기 전용 크롬 프로필</b>(로그인 저장본)로 돌아갑니다. Playwright 플러그인이 깔려 있으면 클로드가 그쪽 빈 브라우저를 골라 <b>로그인 화면으로 튕깁니다.</b><br>✅ GitHub·Vercel 도 <b>필수는 아닙니다</b> — 없어도 발행은 됩니다. 설치 단계(②-1·②-2)에서 손이 덜 갈 뿐입니다." },
 
 { type:"chapter", topic:"env", kicker:"STEP 3", num:"3", icon:"📦",
   title:"파이썬 패키지 · 영상 엔진",
