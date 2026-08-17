@@ -172,6 +172,14 @@ h2.title{font-size:3.5cqw; font-weight:800; color:var(--ink); line-height:1.14; 
 .duo{display:flex; gap:2.4cqw; align-items:flex-start}
 .duo>div{flex:1}
 
+/* 자료 링크 줄 (갤러리 상단) */
+.reslinks{display:flex; gap:.9cqw; flex-wrap:wrap; margin:.9cqw 0 .2cqw}
+.reslinks a{display:inline-flex; align-items:center; gap:.5cqw; text-decoration:none;
+  border-radius:.7cqw; padding:.7cqw 1.2cqw; font-size:1.25cqw; font-weight:800; line-height:1.2;
+  border:2px solid var(--ink); background:var(--gold2); color:#1a1200; box-shadow:.25cqw .25cqw 0 rgba(25,25,25,.18)}
+.reslinks a.ghost{background:#fff; color:var(--ink)}
+.reslinks a:hover{transform:translateY(-.15cqw)}
+
 /* gallery */
 .gallery-slide .pad{padding:4.9cqw 5.4cqw 3.2cqw}
 .gallery-slide .head{margin-bottom:1.1cqw}
@@ -433,7 +441,8 @@ B.gallery = s => { const sec=SECTIONS[s.section]||{items:[]}; let items=sec.item
     ${imgs.length>max?`<div class="galmore">+ ${imgs.length-max}건의 산출물이 더 있습니다 · 총 ${sec.count}건</div>`:`<div class="galmore">총 ${sec.count||show.length}건 · 「${esc(sec.title||'')}」</div>`}</div>`; }
   // link layout
   const max=s.max||9; const show=items.slice(0,max); const tn={notebooklm:'NotebookLM',docs:'문서·Docs',gemini:'Gemini',image:'이미지',other:'링크'};
-  return `<div class="pad" style="--topic:${tvar(t)}"><div class="head"><div class="eyebrow">${esc(s.eyebrow||'')}</div><h2 class="title">${s.title}</h2>${s.lead?`<div class="lead">${s.lead}</div>`:''}</div>
+  const res = (s.res||[]).map(r=>`<a class="${r.ghost?'ghost':''}" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.label)}</a>`).join('');
+  return `<div class="pad" style="--topic:${tvar(t)}"><div class="head"><div class="eyebrow">${esc(s.eyebrow||'')}</div><h2 class="title">${s.title}</h2>${s.lead?`<div class="lead">${s.lead}</div>`:''}${res?`<div class="reslinks">${res}</div>`:''}</div>
   <div class="gal linkg">`+show.map(i=>`<div class="lcard"><div class="top">${av(i.name)}<span class="nm">${esc(i.name)}</span><span class="bdg">${tn[i.type]||'링크'}</span></div>${i.url?`<a class="open" href="${esc(i.url)}" target="_blank" rel="noopener">산출물 열기 →</a>`:`<div class="small">제출 완료</div>`}</div>`).join('')+`</div>
   ${items.length>max?`<div class="galmore">+ ${items.length-max}건 더 · 총 ${sec.count}건 (「${esc(sec.title||'')}」)</div>`:`<div class="galmore">총 ${sec.count||show.length}건 · 「${esc(sec.title||'')}」</div>`}</div>`; };
 

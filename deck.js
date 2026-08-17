@@ -81,7 +81,10 @@ window.DECK = [
 
 { type:"gallery", sec:"00. 계정 준비", title:"계정 · 서비스 가입 (클릭하면 열립니다)",
   section:"accounts", layout:"link", max:8,
-  lead:"아래 일곱 개는 <b>과정 시작 전까지</b> 반드시 끝내주세요.<br>🔴 <b>GitHub 은 지메일 계정으로</b> 가입하고, <b>Vercel 은 그 GitHub 계정으로 로그인</b>하세요 — 따로 만들면 배포가 연결되지 않습니다." },
+  lead:"아래 일곱 개는 <b>과정 시작 전까지</b> 반드시 끝내주세요.<br>🔴 <b>GitHub 은 지메일 계정으로</b> 가입하고, <b>Vercel 은 그 GitHub 계정으로 로그인</b>하세요 — 따로 만들면 배포가 연결되지 않습니다.",
+  res:[
+    { label:"⬇ 사전 준비 체크시트 (엑셀) 내려받기", url:"media/sns6-checklist.xlsx" },
+    { label:"📋 사전 셋팅 안내 — 참석 전에 미리 보기", url:"https://claude.ai/code/artifact/8c51db7b-c04f-493a-bfc0-c594ce4689e1", ghost:true } ] },
 
 { type:"table", title:"계정 준비 체크리스트", head:["#","항목","확인 포인트"],
   rows:[
