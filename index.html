@@ -243,6 +243,18 @@ h2.title{font-size:3.5cqw; font-weight:800; color:var(--ink); line-height:1.14; 
 .pcard .pq{font-size:1.42cqw; line-height:1.5; color:#dfe7f2; font-weight:500}
 .pcard .pq .v{color:var(--gold2); font-weight:700}
 
+/* prompt box — 복사해서 클로드에 붙여넣는 슬라이드 */
+.pbox{margin-top:.8cqw; flex:1; min-height:0; display:flex; flex-direction:column;
+  background:var(--navy); border:1px solid #1d3962; border-radius:1cqw; overflow:hidden; box-shadow:var(--shadow-s)}
+.pbox .pbhead{display:flex; align-items:center; justify-content:space-between; gap:1cqw;
+  padding:.9cqw 1.3cqw; background:#0f2745; border-bottom:1px solid #1d3962}
+.pbox .pbttl{font-size:1.15cqw; font-weight:800; color:var(--gold2); letter-spacing:.04em}
+.pbox .pbcopy{font:inherit; font-size:1.15cqw; font-weight:800; cursor:pointer; border:0; border-radius:.6cqw;
+  padding:.6cqw 1.4cqw; background:var(--gold2); color:#1a1200}
+.pbox .pbcopy.done{background:#2BB673; color:#fff}
+.pbox pre{margin:0; flex:1; min-height:0; overflow:auto; padding:1.2cqw 1.5cqw;
+  font-family:'Malgun Gothic',sans-serif; font-size:1.12cqw; line-height:1.62; color:#dfe7f2; white-space:pre-wrap}
+
 /* flow */
 .flow{display:flex; gap:1.2cqw; align-items:stretch; margin-top:1.4cqw}
 .flow .fstep{flex:1; background:#fff; border:1px solid var(--line); border-radius:.9cqw; padding:1.5cqw 1.2cqw; box-shadow:var(--shadow-s); position:relative; text-align:center}
@@ -450,6 +462,13 @@ B.prompts = s => `<div class="pad" style="--topic:${tvar(s.topic)}">
   <div class="head"><div class="eyebrow">${esc(s.eyebrow||'')}</div><h2 class="title">${s.title}</h2>${s.lead?`<div class="lead">${s.lead}</div>`:''}</div>
   <div class="pcards">${(s.cards||[]).map(c=>`<div class="pcard"><div class="pt">▣ ${esc(c.tag)}</div><div class="pq">${c.body}</div></div>`).join('')}</div></div>`;
 
+B.promptbox = s => { const txt = (window.PROMPTS||{})[s.key] || '';
+  return `<div class="pad" style="--topic:${tvar(s.topic)}">
+  <div class="head"><div class="eyebrow">${esc(s.eyebrow||'')}</div><h2 class="title">${s.title}</h2>${s.lead?`<div class="lead">${s.lead}</div>`:''}</div>
+  <div class="pbox"><div class="pbhead"><span class="pbttl">${esc(s.boxTitle||'클로드에게 붙여넣을 내용')}</span>
+    <button class="pbcopy" data-key="${esc(s.key)}">전체 복사</button></div>
+    <pre>${esc(txt)}</pre></div></div>`; };
+
 B.flow = s => `<div class="pad" style="--topic:${tvar(s.topic)}">
   <div class="head"><div class="eyebrow">${esc(s.eyebrow||'')}</div><h2 class="title">${s.title}</h2>${s.lead?`<div class="lead">${s.lead}</div>`:''}</div>
   <div class="flow">${(s.steps||[]).map((st,i)=>`<div class="fstep"><div class="fi">${st.icon||''}</div><div class="fh">${esc(st.h)}</div><div class="ft">${esc(st.t)}</div></div>${i<s.steps.length-1?'<div class="arr">→</div>':''}`).join('')}</div>
@@ -480,6 +499,13 @@ DECK.forEach((s,i)=>{ const d=document.createElement('section'); d.className='sl
   let html=(B[s.type]?B[s.type](s):`<div class="pad"><h2 class="title">${esc(s.title||s.type)}</h2></div>`);
   if(!CLS[s.type]){ html+=`<div class="foot"><span class="bd">${esc(CFG.footer||'')}</span><span>${String(i+1).padStart(2,'0')} / ${DECK.length}</span></div>`; }
   d.innerHTML=html; track.appendChild(d); });
+
+/* 프롬프트 복사 버튼 */
+document.addEventListener('click', e => { const b = e.target.closest('.pbcopy'); if(!b) return;
+  const t = (window.PROMPTS||{})[b.dataset.key] || '';
+  navigator.clipboard.writeText(t).then(()=>{ const o=b.textContent; b.textContent='복사됨!'; b.classList.add('done');
+    setTimeout(()=>{ b.textContent=o; b.classList.remove('done'); },1500); });
+});
 
 /* ---- nav ---- */
 let cur=0; const N=DECK.length;

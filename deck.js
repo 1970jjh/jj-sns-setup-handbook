@@ -295,6 +295,10 @@ window.DECK = [
     {h:"인스타는 나중에 이용 사례 추가", t:"대시보드 → 이용 사례 → [이용 사례 추가]"},
     {h:"각 이용 사례에서 토큰 생성", t:"스레드·인스타 토큰을 따로 받습니다"} ],
   note:"토큰은 비밀번호와 같습니다. 채팅창·문서에 붙여넣지 말고 <b>.auth 폴더 파일</b>에만 저장하세요." },
+  { type:"promptbox", sec:"A. 스레드·인스타", key:"browserSetup",
+    title:"클로드에게 시키기 — 브라우저로 따라가기",
+    boxTitle:"아래 전체를 복사해 Claude 데스크탑 앱에 붙여넣으세요",
+    lead:"다음 장부터 나오는 화면들을 <b>클로드가 브라우저를 직접 열어</b> 함께 진행합니다. 오른쪽 <b>[전체 복사]</b> 를 누른 뒤 Claude 채팅창에 붙여넣으면 STEP 1 부터 시작합니다.<br>🔴 비밀번호·인증번호·캡차는 <b>본인이 직접</b> 입력합니다. 토큰이 화면에 나와도 <b>클로드는 읽지 않습니다.</b>" },
 
 /* ───────── 실제 화면 단계별 — 스레드 / 인스타 ───────── */
 { type:"chapter", topic:"claude", kicker:"화면으로 따라하기", num:"A", icon:"📸",
@@ -364,20 +368,20 @@ window.DECK = [
   url:"사용자 토큰 생성기",
   caption:"내 스레드 계정 옆 <b>[액세스 토큰 생성하기]</b> 를 누르면 긴 문자열이 나옵니다. 그것이 토큰입니다.",
   steps:["내 스레드 계정이 목록에 보이는지 확인", "오른쪽 <b>[액세스 토큰 생성하기]</b> 클릭", "나온 긴 문자열을 <b>복사</b>"],
-  note:"🔴 계정이 안 보이면 <b>[Threads 테스터 추가 또는 삭제]</b> 로 본인 계정을 먼저 넣으세요." },
+  note:"🔴 계정이 안 보이면 <b>[Threads 테스터 추가 또는 삭제]</b> 로 본인 계정을 넣고, <b>초대를 수락</b>해야 합니다 (스레드 앱 → 설정 → 웹사이트 권한 → 초대 수락).<br>⏳ 이 토큰은 <b>60일 후 만료</b>됩니다. 만료되면 이 화면에서 다시 만들면 됩니다." },
 
 { type:"shot", sec:"A. 스레드·인스타", img:"ig01_permissions",
-  title:"⑨ 인스타그램 — 권한 3가지와 앱 ID",
+  title:"⑨ 인스타그램 — 권한 4가지와 앱 ID",
   url:"이용 사례 → Instagram → API 설정",
-  caption:"instagram_business_basic · manage_comments · manage_messages 세 가지가 필요합니다.",
-  steps:["이용 사례에서 <b>Instagram</b> 선택", "필요한 권한 <b>3가지</b> 확인", "앱 ID·시크릿은 그대로 두면 됩니다"],
-  note:"instagram_business_basic · manage_comments · manage_messages — 이 셋이 있어야 카드뉴스가 올라갑니다." },
+  caption:"🔴 <b>instagram_business_content_publish</b> 가 있어야 글·사진이 올라갑니다. 이것 하나가 빠지면 토큰을 받아도 발행이 실패합니다.",
+  steps:["이용 사례에서 <b>Instagram</b> 선택", "권한 <b>4가지</b> 확인 — 없으면 [추가]", "앱 ID·시크릿은 그대로 두면 됩니다"],
+  note:"<b>instagram_business_basic</b> (계정 읽기) · 🔴 <b>instagram_business_content_publish</b> (발행 — 필수) · <b>instagram_business_manage_comments</b> · <b>instagram_business_manage_messages</b><br>페이스북 «페이지»는 연결하지 않아도 됩니다 — 이 방식(Instagram 로그인)은 페이지를 요구하지 않습니다." },
 
 { type:"shot", img:"ig02_token_setup", title:"⑩ 인스타 토큰 생성",
   url:"2. 액세스 토큰 생성",
   caption:"펼치면 내 계정이 보입니다. <b>[토큰 생성]</b> 을 누르면 토큰이 나옵니다.",
   steps:["<b>2. 액세스 토큰 생성</b> 을 클릭해 펼치기", "내 인스타 계정이 나오는지 확인", "<b>[토큰 생성]</b> 클릭 → 문자열 복사"],
-  note:"🔴 계정이 안 보이면 인스타가 <b>비즈니스/크리에이터</b> 계정이 아닌 것입니다. 인스타 앱에서 먼저 전환하세요." },
+  note:"🔴 계정이 안 보이면 인스타가 <b>비즈니스/크리에이터</b> 계정이 아닌 것입니다. 인스타 앱에서 먼저 전환하세요.<br>⏳ 이 토큰도 <b>60일 후 만료</b>됩니다. 스레드 토큰과 헷갈리지 않게 <b>메모장에 이름을 붙여</b> 저장하세요." },
 
 { type:"shot", img:"ig04_roles_tester", title:"⑪ 앱 역할 — 테스터 확인",
   url:"앱 역할 → 역할",
