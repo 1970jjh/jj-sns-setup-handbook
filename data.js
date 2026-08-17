@@ -56,12 +56,15 @@ window.IMG = {
   mt01_account_steps: { file: "assets/img/setup/mt01_account_steps.jpg" },
   th04b_usecase_filter: { file: "assets/img/setup/th04b_usecase_filter.jpg" },
   th04c_portfolio_skip: { file: "assets/img/setup/th04c_portfolio_skip.jpg" },
+  cx_apps: { file: "assets/img/cx_apps.jpg" },
+  cx_store: { file: "assets/img/cx_store.jpg" },
+  cx_toggle: { file: "assets/img/cx_toggle.jpg" },
 };
 
 window.SECTIONS = {
   accounts: {
     title: "계정 · 서비스 가입 (과정 전 사전과제)",
-    count: 7,
+    count: 8,
     items: [
       { name: "Claude 요금제 — MAX 100 구독", url: "https://claude.com/pricing", type: "runapp" },
       { name: "네이버 블로그 개설", url: "https://blog.naver.com", type: "link" },
@@ -70,7 +73,8 @@ window.SECTIONS = {
       { name: "유튜브 채널 만들기", url: "https://www.youtube.com/create_channel", type: "link" },
       { name: "GitHub 가입 — 반드시 지메일 계정으로", url: "https://github.com", type: "github" },
       { name: "Vercel 가입 — GitHub 계정으로 로그인", url: "https://vercel.com/signup", type: "vercel" },
-    ],
+      { name: "Claude in Chrome — 크롬 확장 설치", url: "https://chromewebstore.google.com/detail/claude/fmnenpaijhlkllndbgnjdklogblblpfp", type: "link" },
+    ]
   },
   runtime: {
     title: "기본 런타임 4종 내려받기",

@@ -81,10 +81,30 @@ window.DECK = [
 
 { type:"gallery", sec:"00. 계정 준비", title:"계정 · 서비스 가입 (클릭하면 열립니다)",
   section:"accounts", layout:"link", max:8,
-  lead:"아래 일곱 개는 <b>과정 시작 전까지</b> 반드시 끝내주세요.<br>🔴 <b>GitHub 은 지메일 계정으로</b> 가입하고, <b>Vercel 은 그 GitHub 계정으로 로그인</b>하세요 — 따로 만들면 배포가 연결되지 않습니다.",
+  lead:"아래 여덟 개는 <b>과정 시작 전까지</b> 반드시 끝내주세요.<br>🔴 <b>Claude in Chrome(크롬 확장)</b> 이 없으면 <b>인스타·스레드 토큰 발급과 유튜브 인증을 아예 시작할 수 없습니다</b> — 다음 두 장을 보고 꼭 설치해 오세요.<br>🔴 <b>GitHub 은 지메일 계정으로</b> 가입하고, <b>Vercel 은 그 GitHub 계정으로 로그인</b>하세요 — 따로 만들면 배포가 연결되지 않습니다.",
   res:[
     { label:"⬇ 사전 준비 체크시트 (엑셀) 내려받기", url:"media/sns6-checklist.xlsx" },
     { label:"📋 사전 셋팅 안내 — 참석 전에 미리 보기", url:"https://claude.ai/code/artifact/8c51db7b-c04f-493a-bfc0-c594ce4689e1", ghost:true } ] },
+  { type:"duo", sec:"00. 계정 준비",
+    title:"Claude in Chrome — 크롬 확장 설치",
+    lead:"클로드가 <b>내가 로그인해 둔 크롬</b>을 그대로 조작하게 해 주는 확장입니다. 토큰 발급·유튜브 인증이 모두 이것으로 진행됩니다.",
+    imgs:[
+      { id:"cx_apps",  url:"claude.ai → 설정 → 앱·커넥터",
+        cap:"① 클로드 홈페이지의 앱 목록에서 <b>Chrome</b> 의 <b>[설치]</b> 를 누릅니다" },
+      { id:"cx_store", url:"chromewebstore.google.com — Claude",
+        cap:"② 크롬 웹스토어로 넘어가면 <b>[Chrome에 추가]</b> 를 누릅니다 <span style='opacity:.7'>(사진은 이미 설치된 상태라 «삭제»로 보입니다)</span>" }
+    ] },
+  { type:"shot", sec:"00. 계정 준비",
+    img:"cx_toggle", url:"Claude 데스크탑 앱 → 설정 → Chrome용 Claude",
+    title:"설치 후 — 데스크탑 앱에서 «켜기» 까지 해야 합니다 ★",
+    caption:"확장만 깔면 동작하지 않습니다. <b>Claude 데스크탑 앱 설정</b> 에서 스위치를 <b>파란색(켜짐)</b> 으로 바꿔야 연결됩니다.",
+    steps:[
+      "<b>Claude 데스크탑 앱</b> → 왼쪽 아래 <b>설정</b>",
+      "왼쪽 메뉴에서 <b>Chrome용 Claude</b> 클릭",
+      "<b>「Chrome에서 Claude 활성화」</b> 스위치를 <b>켬</b> 으로",
+      "<b>모든 사이트 기본값</b> 은 <b>«모든 사이트 허용»</b> 으로 둡니다"
+    ],
+    note:"🔴 이 스위치가 꺼져 있으면 확장이 깔려 있어도 클로드가 크롬을 조작하지 못합니다.<br>설치·활성화가 끝나면 크롬 오른쪽 위 <b>확장 아이콘</b> 을 눌러 <b>로그인된 상태</b>인지 한 번 확인해 주세요." },
 
 { type:"table", title:"계정 준비 체크리스트", head:["#","항목","확인 포인트"],
   rows:[
@@ -96,7 +116,8 @@ window.DECK = [
     ["0-6","스레드 계정 (인스타 연결)","토큰 생성기로 발급"],
     ["0-7","유튜브 채널 만들기","계정만 있고 채널이 없으면 업로드가 안 됨"],
     ["0-8","<b>GitHub — 지메일 계정으로 가입</b>","구글·Vercel 과 같은 메일로 묶어야 뒤에서 안 꼬임"],
-    ["0-9","<b>Vercel — GitHub 계정으로 로그인</b>","따로 가입하면 저장소 연결이 안 됨 · 카드 이미지 호스팅에 필수"] ],
+    ["0-9","<b>Vercel — GitHub 계정으로 로그인</b>","따로 가입하면 저장소 연결이 안 됨 · 카드 이미지 호스팅에 필수"],
+    ["0-10","<b>Claude in Chrome — 확장 설치 + 활성화</b>","없으면 토큰 발급·유튜브 인증을 시작조차 못 함 · 설정에서 스위치 켜기까지"] ],
   note:"⚠️ 인스타를 <b>비즈니스 계정으로 전환</b>하지 않으면 카드뉴스 자동 발행이 아예 되지 않습니다. 가장 흔한 사전준비 누락입니다." },
 
 { type:"chapter", topic:"env", kicker:"STEP 1", num:"1", icon:"⚙️",
