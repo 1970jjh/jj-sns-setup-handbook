@@ -212,7 +212,7 @@ window.DECK = [
   { type:"shot", sec:"02. Claude",
     img:"cx_plugins", url:"Claude Desktop → 설정 → 플러그인 → 파트너",
     title:"플러그인 활성화 — GitHub · Vercel 두 개만",
-    caption:"<b>디렉터리 → 플러그인 → 파트너</b> 탭에서 <b>Github</b> 와 <b>Vercel</b> 을 설치합니다. 가운데 <b>Playwright</b> 는 <b>설치하지 마세요.</b>",
+    caption:"<b>디렉터리 → 플러그인 → 파트너</b> 탭에서 빨간 테두리 두 개 — <b>Github</b> 와 <b>Vercel</b> — 만 설치합니다.",
     steps:[
       "설정 <b>디렉터리</b> → 왼쪽 <b>플러그인</b>",
       "위쪽 <b>파트너</b> 탭 선택",
