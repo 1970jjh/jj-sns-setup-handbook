@@ -330,13 +330,7 @@ window.DECK = [
     title:"클로드에게 시키기 — 브라우저로 따라가기",
     boxTitle:"아래 전체를 복사해 Claude 데스크탑 앱에 붙여넣으세요",
     lead:"다음 장부터 나오는 화면들을 <b>클로드가 브라우저를 직접 열어</b> 함께 진행합니다. 오른쪽 <b>[전체 복사]</b> 를 누른 뒤 Claude 채팅창에 붙여넣으면 STEP 1 부터 시작합니다.<br>🔴 비밀번호·인증번호·캡차는 <b>본인이 직접</b> 입력합니다. 토큰이 화면에 나와도 <b>클로드는 읽지 않습니다.</b>" },
-  { type:"shot", img:"mt01_account_steps", title:"⓪ Meta 개발자 계정부터 만듭니다",
-    url:"developers.facebook.com",
-    caption:"페이스북 계정이 있어도 <b>개발자 계정</b> 은 따로 만들어야 합니다. 네 단계로 끝납니다.",
-    steps:["<b>Register</b> — 페이스북 계정으로 로그인", "<b>Verify account</b> — 문자로 온 인증번호 입력", "<b>Contact info</b> — 연락받을 이메일 확인", "<b>About you</b> — 역할을 고르면 완료"],
-    note:"문자가 안 오면 국가번호를 <b>+82 (South Korea)</b> 로 두고 앞의 0 을 뺀 번호로 다시 시도하세요. 화면의 이메일은 예시라 가려 두었습니다." },
-
-{ type:"split", title:"Meta 개발자 — 앱은 하나만 만듭니다", side:"right", img:"meta_apps",
+  { type:"split", title:"Meta 개발자 — 앱은 하나만 만듭니다", side:"right", img:"meta_apps",
   url:"developers.facebook.com/apps",
   lead:"🔴 <b>앱을 두 개 만들 필요가 없습니다.</b> 앱 하나에 <b>이용 사례</b>를 두 개 붙이면 스레드·인스타를 함께 씁니다.",
   bullets:[
@@ -352,6 +346,12 @@ window.DECK = [
   caption:"페이스북 계정으로 로그인합니다. 별도 가입은 필요 없습니다.",
   steps:["브라우저 주소창에 <b>developers.facebook.com</b> 입력", "우측 상단 <b>[로그인]</b> → 페이스북 계정 선택", "개발자 계정을 따로 만들 필요는 없습니다"],
   note:"💡 페이스북 계정이 없으면 먼저 만드셔야 합니다. 인스타·스레드가 모두 Meta 소속이라 이 계정 하나로 연결됩니다." },
+
+{ type:"shot", img:"mt01_account_steps", title:"⓪ Meta 개발자 계정부터 만듭니다",
+    url:"developers.facebook.com",
+    caption:"페이스북 계정이 있어도 <b>개발자 계정</b> 은 따로 만들어야 합니다. 네 단계로 끝납니다.",
+    steps:["<b>Register</b> — 페이스북 계정으로 로그인", "<b>Verify account</b> — 문자로 온 인증번호 입력", "<b>Contact info</b> — 연락받을 이메일 확인", "<b>About you</b> — 역할을 고르면 완료"],
+    note:"문자가 안 오면 국가번호를 <b>+82 (South Korea)</b> 로 두고 앞의 0 을 뺀 번호로 다시 시도하세요. 화면의 이메일은 예시라 가려 두었습니다." },
 
 { type:"duo", title:"② 앱 만들기",
   lead:"로그인하면 <b>내 앱</b> 목록이 나옵니다. 우측 상단 초록색 <b>[앱 만들기]</b> 를 누르세요. 처음이면 목록이 비어 있는 게 정상이고, <b>앱은 하나만</b> 만들면 됩니다.",
