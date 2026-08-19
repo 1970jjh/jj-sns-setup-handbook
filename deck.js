@@ -70,7 +70,7 @@ window.DECK = [
     ["<b>렌더</b>","조각들을 합쳐 <b>영상 파일로 만들어내는</b> 작업","쇼츠 제작"],
     ["<b>커넥터</b>","Claude 가 외부 서비스와 연결되게 <b>켜두는 스위치</b>","GitHub·Vercel 연동"],
     ["<b>캐러셀</b>","인스타에서 <b>옆으로 넘겨보는</b> 여러 장 게시물","카드뉴스 발행"],
-    ["<b>.env</b>","내 열쇠들을 적어두는 <b>메모장 파일</b>. 이 폴더 밖으로 안 나갑니다","키·토큰 저장"],
+    ["<b>.env</b>","프로그램이 <b>열쇠를 읽어가는 파일</b>. 직접 만들 필요 없이 클로드가 넣어줍니다","제미나이 키 저장"],
     ["<b>JSON</b>","설정을 담은 <b>텍스트 파일</b>. 열어볼 필요는 없습니다","유튜브 인증 파일"] ],
   note:"💡 지금 다 외우지 않으셔도 됩니다. 나오면 그때 이 장으로 돌아와 보시면 됩니다. <b>목차에서 '00. 용어'</b> 를 누르면 바로 옵니다." },
 
@@ -259,7 +259,7 @@ window.DECK = [
   bullets:[
     {h:"Google AI Studio 접속", t:"구글 계정으로 로그인"},
     {h:"API 키 만들기 클릭", t:"생성된 키를 복사"},
-    {h:".env 파일에 저장", t:"GEMINI_API_KEY=복사한키"} ],
+    {h:"메모장에 붙여넣기", t:"토큰들과 함께 토큰.txt 에 모아두면 됩니다"} ],
   note:"⚠️ 키는 채팅창이나 문서에 붙여넣지 마세요. .env 파일에만 둡니다." },
 
 { type:"split", title:"② 유튜브 업로드 인증", side:"right", img:"gcloud",
@@ -318,7 +318,7 @@ window.DECK = [
     {h:"스레드 계정이 인스타와 연결돼 있어야 함", t:"미연결이면 토큰 생성 단계에서 막힙니다"},
     {h:"이용 사례 → Threads API 액세스", t:"앱 대시보드에서 이용 사례로 들어갑니다"},
     {h:"권한 확인 후 토큰 생성", t:"threads_basic · threads_content_publish 두 가지"},
-    {h:"받은 토큰은 .env 에 저장", t:"PowerShell 로 넣는 방법은 뒤에서 자세히"} ],
+    {h:"받은 토큰은 메모장에 붙여넣기", t:"저장은 클로드가 합니다 — 뒤에서 자세히"} ],
   caption:"자세한 화면은 다음 장 <b>A. 스레드·인스타</b> 구간에서 하나씩 봅니다." },
 
 /* ───────── 실제 화면 단계별 — 스레드 / 인스타 ───────── */
@@ -586,7 +586,7 @@ window.DECK = [
   head:["대상","유효기간","만료되면"],
   rows:[
     ["<b>유튜브 (테스트 모드)</b>","<b>약 7일</b>","브라우저 인증 창이 다시 열립니다. 한 번 로그인하면 또 7일"],
-    ["<b>인스타그램 토큰</b>","60일","토큰 생성기에서 다시 발급 → .env 교체"],
+    ["<b>인스타그램 토큰</b>","60일","토큰 생성기에서 다시 발급 → 메모장에 붙여넣고 클로드에게 저장 요청"],
     ["<b>스레드 토큰</b>","60일","인스타와 동일"],
     ["<b>티스토리 (카카오)</b>","주기적","작업 중 창이 뜨면 로그인만"],
     ["<b>네이버</b>","거의 안 끊김","최초 1회 로그인으로 충분"],
@@ -665,7 +665,7 @@ window.DECK = [
     "src/ — 수집·발행·동기화 스크립트",
     "scripts/ — 배치·재시도 도구",
     ".auth/ — 토큰과 로그인 세션 (본인 것)",
-    ".env — API 키 (본인 것)",
+    "토큰·API 키 — 메모장에 적어둔 본인 것",
     "posts/ · work/ · thumbs/ — 산출물"] } },
   { type:"promptbox", sec:"05. 스킬 설치", key:"install1",
     title:"① 클로드에게 시키기 — 내려받아 제자리에 놓기",
@@ -700,13 +700,17 @@ window.DECK = [
     { tag:"④ 패키지 설치 (2~3분)",
       body:'엔진 폴더에서<br><span class="v">pip install -r requirements.txt</span><br><span class="v">python -m playwright install chromium</span>' } ] },
 
-{ type:"prompts", title:"폴더 배치와 .env 만들기",
-  lead:"엔진을 받은 뒤 아래 두 가지를 준비하면 실행 준비가 끝납니다.",
+{ type:"prompts", title:"폴더 배치와 열쇠 넣기",
+  lead:"엔진을 받은 뒤 아래를 준비하면 실행 준비가 끝납니다. <b>손으로 파일을 만들 일은 없습니다</b> — 값만 메모장에 붙여두면 클로드가 제자리에 넣습니다.",
   cards:[
     { tag:"① 권장 폴더 배치",
-      body:'<span class="v">C:\Users\사용자명\claude-app\tistory\</span> ← 엔진<br><span class="v">C:\Users\사용자명\.claude\skills\</span> ← 스킬 3폴더<br><br>경로에 <b>한글·공백</b>이 없는 편이 안전합니다' },
-    { tag:"② .env 파일 만들기",
-      body:'메모장을 열고 아래를 입력한 뒤<br>파일명을 <span class="v">.env</span> 로 저장 (엔진 폴더에)<br><br><span class="v">GEMINI_API_KEY=발급받은키</span><br><span class="v">TTS_ENGINE=gemini</span><br><br>⚠️ 확장자가 <b>.env.txt</b> 가 되지 않도록 주의' } ] },
+      body:'<span class="v">C:\\sns-auto\\tistory\\</span> ← 메인 엔진<br><span class="v">C:\\sns-auto\\shorts-remotion\\</span> ← 쇼츠 엔진<br><span class="v">C:\\Users\\사용자명\\.claude\\skills\\</span> ← 스킬 3폴더<br><br>경로에 <b>한글·공백</b>이 없는 편이 안전합니다' },
+    { tag:"② 토큰·키는 메모장에 모아두기",
+      body:'스레드 토큰 · 인스타 토큰 · 제미나이 키를<br><b>한 줄에 하나씩</b> 붙여넣고 저장<br><br>👉 <span class="v">C:\\sns-auto\\토큰.txt</span><br><br>어느 줄이 무엇인지 <b>적지 않아도 됩니다</b>' },
+    { tag:"③ 클로드에게 넘기면 끝",
+      body:'<span class="v">C:\\sns-auto\\토큰.txt 에 토큰 적어뒀어.<br>읽어서 저장해줘</span><br><br>· 스레드·인스타 → <span class="v">tistory\\.auth\\</span><br>· 제미나이 키 → <span class="v">shorts-remotion\\.env</span><br><br>서버에 물어 <b>스스로 구분</b>해 넣습니다' },
+    { tag:"④ 유튜브 JSON 은 그냥 두세요",
+      body:'<span class="v">client_secret_….json</span> 은 옮기지 않아도 됩니다.<br><br>사용자 폴더 · <span class="v">C:\\sns-auto</span> · 다운로드 폴더<br><b>어디에 있어도 엔진이 찾습니다</b><br><br>🔴 <b>이름만 바꾸지 마세요</b>' } ] },
 
 { type:"concept", eyebrow:"SKILLS", title:"스킬 폴더 구조",
   lead:"<b>~/.claude/skills/</b> 아래에 세 폴더를 넣습니다.",
@@ -783,13 +787,15 @@ window.DECK = [
   head:["화면에 뜨는 메시지","무슨 뜻인가","해결"],
   rows:[
     ["<b>ModuleNotFoundError: No module named 'PIL'</b>","필요한 부품이 아직 안 깔림","엔진 폴더에서 <b>pip install -r requirements.txt</b>"],
-    ["<b>FileNotFoundError: src/publish.py</b>","엔진 폴더 위치가 스킬에 적힌 경로와 다름","엔진을 <b>C:\\Users\\사용자명\\claude-app\\tistory\\</b> 로 옮기기"],
-    ["<b>GEMINI_API_KEY 관련 오류</b>","<b>.env</b> 가 없거나 <b>.env.txt</b> 로 저장됨",'메모장 저장 시 파일명을 <b>".env"</b> 처럼 따옴표로 감싸기'],
+    ["<b>FileNotFoundError: src/publish.py</b>","엔진 폴더 위치가 스킬에 적힌 경로와 다름","엔진을 <b>C:\\sns-auto\\tistory\\</b> 로 옮기기"],
+    ["<b>인스타/스레드 토큰이 없습니다</b>","토큰을 아직 저장하지 않음","메모장에 붙여넣고 <b>토큰.txt 읽어서 저장해줘</b> 라고 말하기"],
+    ["<b>토큰이 너무 짧습니다 / 유효하지 않습니다</b>","검은 명령창에 <b>Ctrl+V</b> 로 붙여넣어 한 글자만 들어감","<b>마우스 오른쪽 클릭</b>으로 붙여넣기 (창 제목에 «선택» 이 있으면 Esc 먼저)"],
+    ["<b>GEMINI_API_KEY 관련 오류</b>","제미나이 키가 아직 저장되지 않음","키도 <b>토큰.txt</b> 에 같이 붙여넣으면 함께 저장됩니다"],
     ["<b>403 ... API has not been used</b>","유튜브 API 를 안 켬 <b>(가장 흔함)</b>","Cloud 콘솔에서 <b>상태: 사용 설정됨</b> 확인"],
     ["<b>403 access_denied</b>","테스트 사용자에 내 계정이 없음","OAuth 동의 화면 → 대상 → <b>Add users</b>"],
     ["<b>이 앱은 Google에서 확인하지 않았습니다</b>","내가 만든 앱이라 정상","<b>[고급]</b> → <b>[앱이름(안전하지 않음)으로 이동]</b>"],
     ["<b>일주일 뒤 갑자기 인증 창이 뜸</b>","테스트 모드 7일 만료 (정상)","한 번 로그인하면 또 7일 갑니다"],
-    ["<b>client_secret 파일을 찾을 수 없습니다</b>","JSON 이 아직 다운로드 폴더에 있음","<b>C:\\Users\\사용자명\\</b> 으로 옮기기 (열거나 고치지 말 것)"] ],
+    ["<b>client_secret 파일을 찾을 수 없습니다</b>","파일 이름이 바뀌었거나 엉뚱한 폴더에 있음","이름을 <b>client_secret_…json</b> 그대로 되돌리기 (사용자 폴더·C:\\sns-auto·다운로드 어디든 OK)"] ],
   note:"🔴 초보자가 가장 많이 막히는 건 <b>403 두 가지</b>입니다. 원인(API 미활성·테스트 사용자 누락)과 증상(업로드 실패)이 멀리 떨어져 있어 스스로 찾기 어렵습니다. 이 표를 그대로 보시면 됩니다." },
 
 { type:"table", title:"발행 단계", head:["증상","원인","해결"],
@@ -815,11 +821,11 @@ window.DECK = [
 { type:"concept", eyebrow:"보안 — 꼭 지켜주세요", title:"채팅창에 넣지 말아야 할 것 3가지",
   lead:"AI 대화 기록에 남으면 <b>지워도 복구되지 않습니다</b>. 아래 셋은 절대 붙여넣지 마세요.",
   bullets:[
-    {h:"① 토큰 (인스타 · 스레드)", t:"긴 문자열 열쇠입니다. PowerShell 로 .env 파일에 직접 씁니다"},
+    {h:"① 토큰 (인스타 · 스레드)", t:"긴 문자열 열쇠입니다. 메모장에 적어두고 클로드에게 파일만 알려줍니다"},
     {h:"② client_secret JSON 파일", t:"첨부도 안 됩니다. 파일을 옮기기만 하면 Claude 가 알아서 찾습니다"},
     {h:"③ 비밀번호 · API 키", t:"로그인 창이 뜨면 본인이 직접 입력합니다. AI 는 대신 입력하지 않습니다"} ],
   aside:{ h:"이렇게 하시면 안전합니다", items:[
-    "✅ \"토큰을 .env 에 넣었어\"",
+    "✅ \"토큰.txt 에 적어뒀어. 읽어서 저장해줘\"",
     "✅ \"client_secret 파일 옮겨뒀어\"",
     "✅ \"로그인 창 떠서 내가 로그인했어\"",
     "",
