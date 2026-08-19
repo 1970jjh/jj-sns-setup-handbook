@@ -60,6 +60,7 @@ window.IMG = {
   cx_store: { file: "assets/img/cx_store.jpg" },
   cx_toggle: { file: "assets/img/cx_toggle.jpg" },
   cx_plugins: { file: "assets/img/cx_plugins.jpg" },
+  mt02_no_app: { file: "assets/img/setup/mt02_no_app.jpg" },
 };
 
 window.SECTIONS = {

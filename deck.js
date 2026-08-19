@@ -321,16 +321,6 @@ window.DECK = [
     {h:"받은 토큰은 .env 에 저장", t:"PowerShell 로 넣는 방법은 뒤에서 자세히"} ],
   caption:"자세한 화면은 다음 장 <b>A. 스레드·인스타</b> 구간에서 하나씩 봅니다." },
 
-{ type:"split", title:"Meta 개발자 — 앱은 하나만 만듭니다", side:"right", img:"meta_apps",
-  url:"developers.facebook.com/apps",
-  lead:"🔴 <b>앱을 두 개 만들 필요가 없습니다.</b> 앱 하나에 <b>이용 사례</b>를 두 개 붙이면 스레드·인스타를 함께 씁니다.",
-  bullets:[
-    {h:"앱 만들기 클릭", t:"앱 이름과 연락처 이메일만 넣으면 됩니다"},
-    {h:"이용 사례에서 Threads API 액세스 선택", t:"다음 화면에서 목록으로 나옵니다"},
-    {h:"인스타는 나중에 이용 사례 추가", t:"대시보드 → 이용 사례 → [이용 사례 추가]"},
-    {h:"각 이용 사례에서 토큰 생성", t:"스레드·인스타 토큰을 따로 받습니다"} ],
-  note:"토큰은 비밀번호와 같습니다. 채팅창·문서에 붙여넣지 말고 <b>.auth 폴더 파일</b>에만 저장하세요." },
-
 /* ───────── 실제 화면 단계별 — 스레드 / 인스타 ───────── */
 { type:"chapter", topic:"claude", kicker:"화면으로 따라하기", num:"A", icon:"📸",
   title:"스레드 · 인스타 토큰 — 실제 화면",
@@ -346,6 +336,16 @@ window.DECK = [
     steps:["<b>Register</b> — 페이스북 계정으로 로그인", "<b>Verify account</b> — 문자로 온 인증번호 입력", "<b>Contact info</b> — 연락받을 이메일 확인", "<b>About you</b> — 역할을 고르면 완료"],
     note:"문자가 안 오면 국가번호를 <b>+82 (South Korea)</b> 로 두고 앞의 0 을 뺀 번호로 다시 시도하세요. 화면의 이메일은 예시라 가려 두었습니다." },
 
+{ type:"split", title:"Meta 개발자 — 앱은 하나만 만듭니다", side:"right", img:"meta_apps",
+  url:"developers.facebook.com/apps",
+  lead:"🔴 <b>앱을 두 개 만들 필요가 없습니다.</b> 앱 하나에 <b>이용 사례</b>를 두 개 붙이면 스레드·인스타를 함께 씁니다.",
+  bullets:[
+    {h:"앱 만들기 클릭", t:"앱 이름과 연락처 이메일만 넣으면 됩니다"},
+    {h:"이용 사례에서 Threads API 액세스 선택", t:"다음 화면에서 목록으로 나옵니다"},
+    {h:"인스타는 나중에 이용 사례 추가", t:"대시보드 → 이용 사례 → [이용 사례 추가]"},
+    {h:"각 이용 사례에서 토큰 생성", t:"스레드·인스타 토큰을 따로 받습니다"} ],
+  note:"토큰은 비밀번호와 같습니다. 채팅창·문서에 붙여넣지 말고 <b>.auth 폴더 파일</b>에만 저장하세요." },
+
 { type:"shot", sec:"A. 스레드·인스타", img:"th01_home",
   title:"① Meta 개발자 사이트 접속",
   url:"developers.facebook.com",
@@ -353,11 +353,14 @@ window.DECK = [
   steps:["브라우저 주소창에 <b>developers.facebook.com</b> 입력", "우측 상단 <b>[로그인]</b> → 페이스북 계정 선택", "개발자 계정을 따로 만들 필요는 없습니다"],
   note:"💡 페이스북 계정이 없으면 먼저 만드셔야 합니다. 인스타·스레드가 모두 Meta 소속이라 이 계정 하나로 연결됩니다." },
 
-{ type:"shot", img:"th02_applist", title:"② 앱 만들기",
-  url:"developers.facebook.com/apps",
-  caption:"우측 상단 <b>[앱 만들기]</b> 를 누릅니다.",
-  steps:["로그인하면 <b>내 앱</b> 목록이 나옵니다", "우측 상단 초록색 <b>[앱 만들기]</b> 클릭", "처음이면 목록이 비어 있는 게 정상입니다"],
-  note:"이미 만든 앱이 있으면 여기 카드로 표시됩니다. <b>앱은 하나만</b> 만들면 됩니다." },
+{ type:"duo", title:"② 앱 만들기",
+  lead:"로그인하면 <b>내 앱</b> 목록이 나옵니다. 우측 상단 초록색 <b>[앱 만들기]</b> 를 누르세요. 처음이면 목록이 비어 있는 게 정상이고, <b>앱은 하나만</b> 만들면 됩니다.",
+  imgs:[
+    { id:"th02_applist", url:"developers.facebook.com/apps",
+      cap:"목록 화면 — 우측 상단 <b>[앱 만들기]</b>" },
+    { id:"mt02_no_app", url:"내 앱 — 아직 앱 없음",
+      cap:"처음이면 <b>«아직 앱 없음»</b> 이 뜹니다. 가운데 <b>[앱 만들기]</b> 로도 됩니다" }
+  ] },
 
 { type:"shot", img:"th03_create_name", title:"③ 앱 이름과 연락처",
   url:"앱 상세 정보 단계",
